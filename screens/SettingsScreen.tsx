@@ -12,7 +12,7 @@ export default function SettingsScreen() {
   return (
     <ScrollView style={styles.container}>
       <Text style={styles.header}>This is a page for settings...</Text>
-      <Text style={styles.header}>This is from a .tsx file, git</Text>
+      <Text style={styles.header}>This is from a .tsx file, git, 2</Text>
     </ScrollView>
   );
 }
