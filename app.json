@@ -23,6 +23,9 @@
     "assetBundlePatterns": [
       "**/*"
     ],
+    "android": {
+      "package": "com.z_tech.zta_react_ts"
+    },
     "ios": {
       "supportsTablet": true
     },
