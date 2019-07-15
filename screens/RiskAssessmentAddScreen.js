@@ -161,20 +161,20 @@ const styles = StyleSheet.create({
         padding: 12,
     },
     detailWrapper: {
-        height: 45,
+        height: 60,
         margin: 10,
-        borderBottomWidth: 1,
-        borderBottomColor: '#ddd',
+        //borderBottomWidth: 1,
+        //borderBottomColor: '#ddd',
         // backgroundColor:'#eee'
     },
     detailHeader: {
-        height: 20
-        // backgroundColor:'red'
+        height: 30,
+        //backgroundColor:'red'
     },
     detailItem: {
         fontWeight: 'bold',
-        height: 20,
-        // backgroundColor:'blue'
+        height: 30,
+        //backgroundColor:'blue'
     },
     skyBlue: {
         backgroundColor: 'skyblue',
