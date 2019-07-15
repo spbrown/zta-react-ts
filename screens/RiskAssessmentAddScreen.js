@@ -29,8 +29,24 @@ const projects = [
         value: 'Q1234',
     },
     {
-        label: 'Q1235',
-        value: 'Q1235',
+        label: 'Q1236',
+        value: 'Q1236',
+    },
+    {
+        label: 'Q1237',
+        value: 'Q1237',
+    },
+    {
+        label: 'Q1238',
+        value: 'Q1238',
+    },
+    {
+        label: 'Q1239',
+        value: 'Q1239',
+    },
+    {
+        label: 'Q1240',
+        value: 'Q1240',
     }
 ];
 
@@ -131,6 +147,8 @@ export default class RiskAssessmentAddScreen extends React.Component {
                         style={pickerSelectStyles}
                         value={this.state.ref}
                     />
+                </View>
+                <View style={styles.detailWrapper}>
                 </View>
                 <TouchableOpacity
                     style={{ color: 'white', marginTop:50, padding: 10, backgroundColor: 'blue' }}
