@@ -13,6 +13,7 @@ export default class HomeScreen extends React.Component {
   };
 
   constructor(props) {
+    super(props);
     console.log('----------------------');
     console.log('HomeScreen.constructor');
     super(props);
