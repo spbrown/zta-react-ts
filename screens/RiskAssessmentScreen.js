@@ -56,6 +56,9 @@ const styles = StyleSheet.create({
         flex: 1,
     },
     header: {
+        backgroundColor: 'navy',
+        color: 'orange',
+        fontWeight: 'bold',
         padding: 12,
     },
     detailWrapper: {
