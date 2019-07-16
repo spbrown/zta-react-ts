@@ -88,6 +88,11 @@ const projects = [
     },
 ];
 
+interface Ting {
+    text: string
+}
+
+
 export default class RiskAssessmentAddScreen extends React.Component {
     static navigationOptions = {
         title: 'Add Risk Assessment'
