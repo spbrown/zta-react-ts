@@ -1,6 +1,6 @@
 import React from 'react';
 import { ActivityIndicator, AsyncStorage, FlatList, TouchableOpacity, StyleSheet, Text, View } from 'react-native';
-import { Button, Header, Icon, List, ListItem, SearchBar } from 'react-native-elements';
+import { Button, Header, Icon, ListItem, SearchBar } from 'react-native-elements';
 
 import AsyncStorageKeys from '../constants/AsyncStorageKeys';
 

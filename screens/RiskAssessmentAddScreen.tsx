@@ -8,6 +8,7 @@ import { ScrollView } from 'react-native-gesture-handler';
 import RNPickerSelect from 'react-native-picker-select';
 import { CheckBox, Divider } from 'react-native-elements'
 import { Input } from 'react-native-elements'
+import { NavigationScreenProp } from 'react-navigation';
 
 const projects = [
     {
@@ -88,12 +89,11 @@ const projects = [
     },
 ];
 
-interface Ting {
-    text: string
-}
+export interface HomeScreenProps {
+    navigation: NavigationScreenProp<any, any>
+};
 
-
-export default class RiskAssessmentAddScreen extends React.Component {
+export default class RiskAssessmentAddScreen extends React.Component<HomeScreenProps, object> {
     static navigationOptions = {
         title: 'Add Risk Assessment'
     };
