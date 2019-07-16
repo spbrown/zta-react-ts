@@ -164,7 +164,7 @@ export default class RiskAssessmentsScreen extends React.Component {
             <Button onPress={this.addTestRiskAssessment} title="Add Test" />
           </View>
           <View style={styles.inputWrap}>
-            <Button onPress={this.clearAsyncStorage} title="Clear" />
+            <Button onPress={this.clearAsyncStorage} title="Clear All" />
           </View>
         </View>
       </View>

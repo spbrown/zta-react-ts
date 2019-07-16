@@ -9,9 +9,48 @@ import RNPickerSelect from 'react-native-picker-select';
 import { CheckBox, Divider } from 'react-native-elements'
 import { Input } from 'react-native-elements'
 
-
-
-
+// const projects = [
+//     {
+//         label: 'Please select...',
+//         value: '',
+//     },
+//     {
+//         label: 'Q1231',
+//         value: 'Q1231',
+//     },
+//     {
+//         label: 'Q1232',
+//         value: 'Q1232',
+//     },
+//     {
+//         label: 'Q1233',
+//         value: 'Q1233',
+//     },
+//     {
+//         label: 'Q1234',
+//         value: 'Q1234',
+//     },
+//     {
+//         label: 'Q1236',
+//         value: 'Q1236',
+//     },
+//     {
+//         label: 'Q1237',
+//         value: 'Q1237',
+//     },
+//     {
+//         label: 'Q1238',
+//         value: 'Q1238',
+//     },
+//     {
+//         label: 'Q1239',
+//         value: 'Q1239',
+//     },
+//     {
+//         label: 'Q1240',
+//         value: 'Q1240',
+//     }
+// ];
 
 const projects = [
     {
@@ -19,41 +58,77 @@ const projects = [
         value: '',
     },
     {
-        label: 'Q1231',
-        value: 'Q1231',
+        label: 'Q2337 Project Planning Resources',
+        value: 'Q2337',
     },
     {
-        label: 'Q1232',
-        value: 'Q1232',
+        label: 'Q2385 Kelda Procurement',
+        value: 'Q2385',
     },
     {
-        label: 'Q1233',
-        value: 'Q1233',
+        label: 'Q2395 Kelda Business Development',
+        value: 'Q2395',
     },
     {
-        label: 'Q1234',
-        value: 'Q1234',
+        label: 'Q2396 Data Collection and Collation Services',
+        value: 'Q2396',
     },
     {
-        label: 'Q1236',
-        value: 'Q1236',
+        label: 'Q2178 Meter verification and calibration at Tidworth',
+        value: 'Q2178',
     },
     {
-        label: 'Q1237',
-        value: 'Q1237',
+        label: 'Q2489 Magor Replacement Meter',
+        value: 'Q2489',
     },
     {
-        label: 'Q1238',
-        value: 'Q1238',
+        label: 'Q2554 Verification of Desal Meters at Beckton',
+        value: 'Q2554',
     },
     {
-        label: 'Q1239',
-        value: 'Q1239',
+        label: 'Q2440 HSBC Maintenance',
+        value: 'Q2440',
     },
     {
-        label: 'Q1240',
-        value: 'Q1240',
+        label: 'Q2505 SW Logger Migration',
+        value: 'Q2505',
+    },
+    {
+        label: 'Q2150 Walton Ultrasonics',
+        value: 'Q2150',
+    },
+    {
+        label: 'Q2164 Walton - Temporary Metering',
+        value: 'Q2164',
+    },
+    {
+        label: 'Q2368 Maple Lodge - Commission 7 Flowmeters',
+        value: 'Q2368',
+    },
+    {
+        label: 'Q2439 Repair to Flowmeter Transmitter',
+        value: 'Q2439',
+    },
+    {
+        label: 'Q2490 Waltham Abbey STW Temporary Flowmeter Install & Survey',
+        value: 'Q2490',
+    },
+    {
+        label: 'Q2527 Flowmeter Investigation/Calibration Hampton AWTW',
+        value: 'Q2527',
+    },
+    {
+        label: 'Q2539 Flow and Pressure Measurement - Rainham WWTW',
+        value: 'Q2539',
     }
+    , {
+        label: 'Q2564 Verification of 1400mm Full-Bore Flowmeter - TW - Honor Oak',
+        value: 'Q2564',
+    },
+    {
+        label: 'Q2565 Fault Investigation of ABB MagMaster Full-Bore Flowmeter - Bovindon Res',
+        value: 'Q2565',
+    },
 ];
 
 export default class RiskAssessmentAddScreen extends React.Component {
@@ -152,7 +227,7 @@ export default class RiskAssessmentAddScreen extends React.Component {
                             value={this.state.task}
                         />
                     </View>
-                    <View style={styles.row}>
+                    {/* <View style={styles.row}>
                         <Text style={styles.textLabel}>Q Number</Text>
                         <TextInput
                             style={styles.textInput}
@@ -160,7 +235,23 @@ export default class RiskAssessmentAddScreen extends React.Component {
                             onChangeText={(ref) => this.setState({ ref })}
                             value={this.state.ref}
                         />
+                    </View> */}
+                    <View style={styles.row4}>
+                        <Text style={styles.textLabel}>Q Number</Text>
+                        <RNPickerSelect
+                            placeholder={{}}
+                            items={projects}
+                            onValueChange={value => {
+                                this.setState({
+                                    ref: value,
+                                });
+                            }}
+                            style={pickerSelectStyles}
+                            value={this.state.ref}
+                            useNativeAndroidPickerStyle={false}
+                        />
                     </View>
+
                     <Divider style={styles.divider} />
                     <Text style={styles.textLabel2}>Are you aware of the site safety rules and fire procedures?</Text>
                     <View style={styles.row2}>
@@ -203,55 +294,6 @@ export default class RiskAssessmentAddScreen extends React.Component {
                 </View>
             </View>
 
-
-            // <View style={styles.container}>
-            //     <Text style={styles.header}>This is where we add a new Risk Assessment.</Text>
-            //     {/* <View style={styles.detailWrapper}> */}
-            //     {/* </View> */}
-
-            //     <View>
-            //             <Text>Expiration date</Text>
-            //             <TextInput style={{flexGrow:1}}/>                  
-            //     </View>
-
-
-            //     <View style={styles.detailWrapper}>
-            //         <Text style={styles.detailHeader}>location</Text>
-            //         <TextInput
-            //             //style={styles.textInput}
-            //             onChangeText={(text) => this.setState({ text })}
-            //             value={this.state.text}
-            //         />
-            //     </View>
-            //     <View style={styles.detailWrapper}>
-            //         <Text style={styles.detailHeader}>Q Number</Text>
-            //         <RNPickerSelect
-            //             placeholder={{}}
-            //             items={projects}
-            //             onValueChange={value => {
-            //                 this.setState({
-            //                     ref: value,
-            //                 });
-            //             }}
-            //             style={pickerSelectStyles}
-            //             value={this.state.ref}
-            //         />
-            //     </View>
-            //     <View style={styles.detailWrapper}>
-            //     </View>
-            //     <TouchableOpacity
-            //         style={{ color: 'white', marginTop: 50, padding: 10, backgroundColor: 'blue' }}
-            //         onPress={this.handleSave}>
-            //         <Text style={{ color: 'white' }}>Save</Text>
-            //     </TouchableOpacity>
-            //     <TouchableOpacity
-            //         style={{ color: 'white', marginTop: 50, padding: 10, backgroundColor: 'blue' }}
-            //         onPress={this.handleCancel}>
-            //         <Text style={{ color: 'white' }}>Cancel</Text>
-            //     </TouchableOpacity>
-            //     {/* <Button style={{ width: '50%' }} onPress={this.handleSave} title="Save" />
-            //     <Button style={{ width: '50%' }} onPress={this.handleCancel} title="Cancel" /> */}
-            // </View>
         );
     }
 }
@@ -267,7 +309,7 @@ const styles = StyleSheet.create({
         flex: 1,
     },
     divider: {
-        marginTop: 20,
+        marginTop: 5,
         marginBottom: 10,
     },
     header: {
@@ -294,6 +336,10 @@ const styles = StyleSheet.create({
         flexDirection: "row",
         padding: 10,
     },
+    row4: {
+        flexDirection: "row",
+        padding: 10,
+    },
     inputWrap: {
         flex: 1,
         margin: 5
@@ -316,102 +362,18 @@ const styles = StyleSheet.create({
         height: 35,
         padding: 0,
     }
-
-    // row: {
-    //     flex: 1,
-    //     flexDirection: "row"
-    // },
-    // inputWrap: {
-    //     flex: 1,
-    //     borderColor: "#cccccc",
-    //     borderBottomWidth: 1,
-    //     marginBottom: 10
-    // },
-    // inputdate: {
-    //     fontSize: 14,
-    //     marginBottom: -12,
-    //     color: "#6a4595",
-    //     flexGrow: 1
-    // },
-    // inputcvv: {
-    //     fontSize: 14,
-    //     marginBottom: -12,
-    //     color: "#6a4595"
-    // },
-
-
-    // header: {
-    //     padding: 12,
-    // },
-    // detailWrapper: {
-    //     height: 60,
-    //     margin: 10,
-    //     //borderBottomWidth: 1,
-    //     //borderBottomColor: '#ddd',
-    //     // backgroundColor:'#eee'
-    // },
-    // detailHeader: {
-    //     height: 30,
-    //     //backgroundColor:'red'
-    // },
-    // detailItem: {
-    //     fontWeight: 'bold',
-    //     height: 30,
-    //     //backgroundColor:'blue'
-    // },
-    // skyBlue: {
-    //     backgroundColor: 'skyblue',
-    //     height: 100
-    // },
-    // imageWrapper: {
-    //     alignItems: 'center',
-    //     marginTop: -75,
-    //     marginBottom: 10
-    // },
-    // image: {
-    //     width: 150,
-    //     height: 150,
-    //     borderWidth: 5,
-    //     borderColor: 'white',
-    //     borderRadius: 75,
-    // },
-    // name: {
-    //     fontSize: 25,
-    //     color: 'grey',
-    // },
-    // inputContainer: {
-    //     paddingTop: 15
-    // },
-    // textInput: {
-    //     borderColor: '#CCCCCC',
-    //     borderTopWidth: 1,
-    //     borderBottomWidth: 1,
-    //     height: 50,
-    //     fontSize: 25,
-    //     paddingLeft: 20,
-    //     paddingRight: 20
-    // }
 });
 
 const pickerSelectStyles = StyleSheet.create({
     inputIOS: {
-        fontSize: 16,
-        paddingVertical: 12,
-        paddingHorizontal: 10,
-        //borderWidth: 1,
+        paddingVertical: 9,
         borderColor: 'gray',
         borderRadius: 4,
         color: 'black',
         paddingRight: 30, // to ensure the text is never behind the icon
     },
     inputAndroid: {
-        fontSize: 16,
-        paddingHorizontal: 10,
-        paddingVertical: 8,
-        borderWidth: 0.5,
-        borderColor: 'blue',
-        borderRadius: 8,
-        color: 'black',
-        paddingRight: 30, // to ensure the text is never behind the icon
+        paddingRight: 50, // to ensure the text is never behind the icon
+        paddingTop: 4,
     },
 });
