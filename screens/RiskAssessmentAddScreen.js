@@ -6,6 +6,12 @@ import AsyncStorageKeys from '../constants/AsyncStorageKeys';
 import uuid from 'uuid/v1';
 import { ScrollView } from 'react-native-gesture-handler';
 import RNPickerSelect from 'react-native-picker-select';
+import { CheckBox, Divider } from 'react-native-elements'
+import { Input } from 'react-native-elements'
+
+
+
+
 
 const projects = [
     {
@@ -59,8 +65,12 @@ export default class RiskAssessmentAddScreen extends React.Component {
         super(props);
 
         this.state = {
-            text: 'hello',
+            text: '',
             ref: '',
+            task: '',
+            checkedYes: false,
+            checkedNo: false,
+            checkedNA: false,
         };
     }
 
@@ -119,57 +129,129 @@ export default class RiskAssessmentAddScreen extends React.Component {
 
     }
 
-
     render() {
         return (
             <View style={styles.container}>
                 <Text style={styles.header}>This is where we add a new Risk Assessment.</Text>
-                {/* <View style={styles.detailWrapper}> */}
-                {/* </View> */}
-
-                <View>
-                        <Text>Expiration date</Text>
-                        <TextInput style={{flexGrow:1}}/>                  
+                <View style={styles.rows}>
+                    <View style={styles.row}>
+                        <Text style={styles.textLabel}>Location</Text>
+                        <TextInput
+                            style={styles.textInput}
+                            placeholder="Enter location here"
+                            onChangeText={(text) => this.setState({ text })}
+                            value={this.state.text}
+                        />
+                    </View>
+                    <View style={styles.row}>
+                        <Text style={styles.textLabel}>Task</Text>
+                        <TextInput
+                            style={styles.textInput}
+                            placeholder="Enter task here"
+                            onChangeText={(task) => this.setState({ task })}
+                            value={this.state.task}
+                        />
+                    </View>
+                    <View style={styles.row}>
+                        <Text style={styles.textLabel}>Q Number</Text>
+                        <TextInput
+                            style={styles.textInput}
+                            placeholder="Enter Q Number here"
+                            onChangeText={(ref) => this.setState({ ref })}
+                            value={this.state.ref}
+                        />
+                    </View>
+                    <Divider style={styles.divider} />
+                    <Text style={styles.textLabel2}>Are you aware of the site safety rules and fire procedures?</Text>
+                    <View style={styles.row2}>
+                        <CheckBox title='Yes' checked={this.state.checkedYes} onPress={() => this.setState({ checkedYes: !this.state.checkedYes })} />
+                        <CheckBox title='No' checked={this.state.checkedNo} onPress={() => this.setState({ checkedNo: !this.state.checkedNo })} />
+                        <CheckBox title='N/A' checked={this.state.checkedNA} onPress={() => this.setState({ checkedNA: !this.state.checkedNA })} />
+                    </View>
+                    <Text style={styles.textLabel2}>Do you have the correct tools, equipment and PPE for the job?</Text>
+                    <View style={styles.row2}>
+                        <CheckBox title='Yes' />
+                        <CheckBox title='No' />
+                        <CheckBox title='N/A' />
+                    </View>
+                    <Text style={styles.textLabel2}>Are the method statement and permit details given correct?</Text>
+                    <View style={styles.row2}>
+                        <CheckBox title='Yes' />
+                        <CheckBox title='No' />
+                        <CheckBox title='N/A' />
+                    </View>
+                    {/* <Text style={styles.textLabel2}>Are power tools and leads PAT tested?</Text>
+                    <View style={styles.row2}>
+                        <CheckBox title='Yes' />
+                        <CheckBox title='No' />
+                        <CheckBox title='N/A' />
+                    </View>
+                    <Text style={styles.textLabel2}>Is lifting gear and test equipment inspected/within calibration?</Text>
+                    <View style={styles.row2}>
+                        <CheckBox title='Yes' />
+                        <CheckBox title='No' />
+                        <CheckBox title='N/A' />
+                    </View> */}
                 </View>
-
-
-                <View style={styles.detailWrapper}>
-                    <Text style={styles.detailHeader}>location</Text>
-                    <TextInput
-                        //style={styles.textInput}
-                        onChangeText={(text) => this.setState({ text })}
-                        value={this.state.text}
-                    />
+                <View style={styles.row3}>
+                    <View style={styles.inputWrap}>
+                        <Button title="Save" onPress={this.handleSave} />
+                    </View>
+                    <View style={styles.inputWrap}>
+                        <Button title="Cancel" onPress={this.handleCancel} />
+                    </View>
                 </View>
-                <View style={styles.detailWrapper}>
-                    <Text style={styles.detailHeader}>Q Number</Text>
-                    <RNPickerSelect
-                        placeholder={{}}
-                        items={projects}
-                        onValueChange={value => {
-                            this.setState({
-                                ref: value,
-                            });
-                        }}
-                        style={pickerSelectStyles}
-                        value={this.state.ref}
-                    />
-                </View>
-                <View style={styles.detailWrapper}>
-                </View>
-                <TouchableOpacity
-                    style={{ color: 'white', marginTop: 50, padding: 10, backgroundColor: 'blue' }}
-                    onPress={this.handleSave}>
-                    <Text style={{ color: 'white' }}>Save</Text>
-                </TouchableOpacity>
-                <TouchableOpacity
-                    style={{ color: 'white', marginTop: 50, padding: 10, backgroundColor: 'blue' }}
-                    onPress={this.handleCancel}>
-                    <Text style={{ color: 'white' }}>Cancel</Text>
-                </TouchableOpacity>
-                {/* <Button style={{ width: '50%' }} onPress={this.handleSave} title="Save" />
-                <Button style={{ width: '50%' }} onPress={this.handleCancel} title="Cancel" /> */}
             </View>
+
+
+            // <View style={styles.container}>
+            //     <Text style={styles.header}>This is where we add a new Risk Assessment.</Text>
+            //     {/* <View style={styles.detailWrapper}> */}
+            //     {/* </View> */}
+
+            //     <View>
+            //             <Text>Expiration date</Text>
+            //             <TextInput style={{flexGrow:1}}/>                  
+            //     </View>
+
+
+            //     <View style={styles.detailWrapper}>
+            //         <Text style={styles.detailHeader}>location</Text>
+            //         <TextInput
+            //             //style={styles.textInput}
+            //             onChangeText={(text) => this.setState({ text })}
+            //             value={this.state.text}
+            //         />
+            //     </View>
+            //     <View style={styles.detailWrapper}>
+            //         <Text style={styles.detailHeader}>Q Number</Text>
+            //         <RNPickerSelect
+            //             placeholder={{}}
+            //             items={projects}
+            //             onValueChange={value => {
+            //                 this.setState({
+            //                     ref: value,
+            //                 });
+            //             }}
+            //             style={pickerSelectStyles}
+            //             value={this.state.ref}
+            //         />
+            //     </View>
+            //     <View style={styles.detailWrapper}>
+            //     </View>
+            //     <TouchableOpacity
+            //         style={{ color: 'white', marginTop: 50, padding: 10, backgroundColor: 'blue' }}
+            //         onPress={this.handleSave}>
+            //         <Text style={{ color: 'white' }}>Save</Text>
+            //     </TouchableOpacity>
+            //     <TouchableOpacity
+            //         style={{ color: 'white', marginTop: 50, padding: 10, backgroundColor: 'blue' }}
+            //         onPress={this.handleCancel}>
+            //         <Text style={{ color: 'white' }}>Cancel</Text>
+            //     </TouchableOpacity>
+            //     {/* <Button style={{ width: '50%' }} onPress={this.handleSave} title="Save" />
+            //     <Button style={{ width: '50%' }} onPress={this.handleCancel} title="Cancel" /> */}
+            // </View>
         );
     }
 }
@@ -180,83 +262,135 @@ function GetQNumber() {
 
 const styles = StyleSheet.create({
 
-    row: {
+    container: {
+        backgroundColor: '#fff',
         flex: 1,
-        flexDirection: "row"
+    },
+    divider: {
+        marginTop: 20,
+        marginBottom: 10,
+    },
+    header: {
+        backgroundColor: 'navy',
+        color: 'orange',
+        fontWeight: 'bold',
+        padding: 12,
+    },
+    rows: {
+        flex: 1,
+        height: 100,
+    },
+    row: {
+        flexDirection: "row",
+        height: 30,
+        padding: 10,
+        // borderWidth: 1,
+        // borderColor: '#ccc',
+    },
+    row2: {
+        flexDirection: "row",
+    },
+    row3: {
+        flexDirection: "row",
+        padding: 10,
     },
     inputWrap: {
         flex: 1,
-        borderColor: "#cccccc",
-        borderBottomWidth: 1,
-        marginBottom: 10
+        margin: 5
     },
-    inputdate: {
-        fontSize: 14,
-        marginBottom: -12,
-        color: "#6a4595",
-        flexGrow: 1
-    },
-    inputcvv: {
-        fontSize: 14,
-        marginBottom: -12,
-        color: "#6a4595"
-    },
-
-
-    container: {
-        flex: 1,
-    },
-    header: {
-        padding: 12,
-    },
-    detailWrapper: {
-        height: 60,
-        margin: 10,
-        //borderBottomWidth: 1,
-        //borderBottomColor: '#ddd',
-        // backgroundColor:'#eee'
-    },
-    detailHeader: {
-        height: 30,
-        //backgroundColor:'red'
-    },
-    detailItem: {
+    textLabel: {
         fontWeight: 'bold',
-        height: 30,
-        //backgroundColor:'blue'
+        paddingTop: 9,
+        width: 100,
+        height: 35,
     },
-    skyBlue: {
-        backgroundColor: 'skyblue',
-        height: 100
-    },
-    imageWrapper: {
-        alignItems: 'center',
-        marginTop: -75,
-        marginBottom: 10
-    },
-    image: {
-        width: 150,
-        height: 150,
-        borderWidth: 5,
-        borderColor: 'white',
-        borderRadius: 75,
-    },
-    name: {
-        fontSize: 25,
-        color: 'grey',
-    },
-    inputContainer: {
-        paddingTop: 15
+    textLabel2: {
+        fontWeight: 'bold',
+        padding: 10,
+        paddingTop: 8,
     },
     textInput: {
-        borderColor: '#CCCCCC',
-        borderTopWidth: 1,
-        borderBottomWidth: 1,
-        height: 50,
-        fontSize: 25,
-        paddingLeft: 20,
-        paddingRight: 20
+        flex: 1,
+        // borderWidth: 1,
+        // borderColor: '#ccc',
+        height: 35,
+        padding: 0,
     }
+
+    // row: {
+    //     flex: 1,
+    //     flexDirection: "row"
+    // },
+    // inputWrap: {
+    //     flex: 1,
+    //     borderColor: "#cccccc",
+    //     borderBottomWidth: 1,
+    //     marginBottom: 10
+    // },
+    // inputdate: {
+    //     fontSize: 14,
+    //     marginBottom: -12,
+    //     color: "#6a4595",
+    //     flexGrow: 1
+    // },
+    // inputcvv: {
+    //     fontSize: 14,
+    //     marginBottom: -12,
+    //     color: "#6a4595"
+    // },
+
+
+    // header: {
+    //     padding: 12,
+    // },
+    // detailWrapper: {
+    //     height: 60,
+    //     margin: 10,
+    //     //borderBottomWidth: 1,
+    //     //borderBottomColor: '#ddd',
+    //     // backgroundColor:'#eee'
+    // },
+    // detailHeader: {
+    //     height: 30,
+    //     //backgroundColor:'red'
+    // },
+    // detailItem: {
+    //     fontWeight: 'bold',
+    //     height: 30,
+    //     //backgroundColor:'blue'
+    // },
+    // skyBlue: {
+    //     backgroundColor: 'skyblue',
+    //     height: 100
+    // },
+    // imageWrapper: {
+    //     alignItems: 'center',
+    //     marginTop: -75,
+    //     marginBottom: 10
+    // },
+    // image: {
+    //     width: 150,
+    //     height: 150,
+    //     borderWidth: 5,
+    //     borderColor: 'white',
+    //     borderRadius: 75,
+    // },
+    // name: {
+    //     fontSize: 25,
+    //     color: 'grey',
+    // },
+    // inputContainer: {
+    //     paddingTop: 15
+    // },
+    // textInput: {
+    //     borderColor: '#CCCCCC',
+    //     borderTopWidth: 1,
+    //     borderBottomWidth: 1,
+    //     height: 50,
+    //     fontSize: 25,
+    //     paddingLeft: 20,
+    //     paddingRight: 20
+    // }
 });
 
 const pickerSelectStyles = StyleSheet.create({

@@ -1,10 +1,10 @@
 import React from 'react';
-import { Alert, AsyncStorage, Button, FlatList, List, ScrollView, StyleSheet, Text, TouchableHighlight, View } from 'react-native';
+import { Alert, AsyncStorage, FlatList, List, ScrollView, StyleSheet, Text, TouchableHighlight, View } from 'react-native';
 import { Icon, ListItem } from 'react-native-elements';
 import Moment from 'moment';
 import { SwipeListView } from 'react-native-swipe-list-view';
 import uuid from 'uuid/v1';
-
+import { Button } from 'react-native-elements';
 import AsyncStorageKeys from '../constants/AsyncStorageKeys';
 
 export default class RiskAssessmentsScreen extends React.Component {
@@ -138,10 +138,8 @@ export default class RiskAssessmentsScreen extends React.Component {
     return (
       <View
         style={{
-          height: 1,
-          width: "86%",
           backgroundColor: "#CED0CE",
-          marginLeft: "14%"
+          height: 1,
         }}
       />
     );
@@ -158,9 +156,17 @@ export default class RiskAssessmentsScreen extends React.Component {
           ItemSeparatorComponent={this.renderSeparator}
           keyExtractor={(item, index) => item.id}
         />
-        <Button onPress={this.addRiskAssessment} title="Add New Risk Assessment" />
-        <Button onPress={this.addTestRiskAssessment} title="Add Test Risk Assessment" />
-        <Button onPress={this.clearAsyncStorage} title="Clear Risk Assessments" />
+        <View style={styles.row3}>
+          <View style={styles.inputWrap}>
+            <Button onPress={this.addRiskAssessment} title="Add New" />
+          </View>
+          <View style={styles.inputWrap}>
+            <Button onPress={this.addTestRiskAssessment} title="Add Test" />
+          </View>
+          <View style={styles.inputWrap}>
+            <Button onPress={this.clearAsyncStorage} title="Clear" />
+          </View>
+        </View>
       </View>
     );
   }
@@ -243,24 +249,30 @@ export default class RiskAssessmentsScreen extends React.Component {
   }
 }
 
-function GetQNumber()
-{
+function GetQNumber() {
   return 'Q' + ('0000' + Math.floor(Math.random() * 9999)).slice(-4);
 }
 
 const styles = StyleSheet.create({
   container: {
-    flex: 1,
-    paddingTop: 15,
     backgroundColor: '#fff',
+    flex: 1,
+    //paddingTop: 15,
   },
   header: {
+    backgroundColor: 'navy',
+    color:'orange',
+    fontWeight: 'bold',
     padding: 12,
   },
   item: {
     padding: 0,
     fontSize: 18,
     height: 40,
+  },
+  inputWrap: {
+    flex: 1,
+    margin: 5
   },
   rowBack: {
     alignItems: 'center',
@@ -270,4 +282,8 @@ const styles = StyleSheet.create({
     justifyContent: 'space-between',
     paddingLeft: 15,
   },
+  row3: {
+    flexDirection: "row",
+  },
+
 });
