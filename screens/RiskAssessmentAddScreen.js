@@ -126,6 +126,13 @@ export default class RiskAssessmentAddScreen extends React.Component {
                 <Text style={styles.header}>This is where we add a new Risk Assessment.</Text>
                 {/* <View style={styles.detailWrapper}> */}
                 {/* </View> */}
+
+                <View>
+                        <Text>Expiration date</Text>
+                        <TextInput style={{flexGrow:1}}/>                  
+                </View>
+
+
                 <View style={styles.detailWrapper}>
                     <Text style={styles.detailHeader}>location</Text>
                     <TextInput
@@ -151,14 +158,14 @@ export default class RiskAssessmentAddScreen extends React.Component {
                 <View style={styles.detailWrapper}>
                 </View>
                 <TouchableOpacity
-                    style={{ color: 'white', marginTop:50, padding: 10, backgroundColor: 'blue' }}
+                    style={{ color: 'white', marginTop: 50, padding: 10, backgroundColor: 'blue' }}
                     onPress={this.handleSave}>
-                    <Text style={{color:'white'}}>Save</Text>
+                    <Text style={{ color: 'white' }}>Save</Text>
                 </TouchableOpacity>
                 <TouchableOpacity
-                    style={{ color: 'white', marginTop:50, padding: 10, backgroundColor: 'blue' }}
+                    style={{ color: 'white', marginTop: 50, padding: 10, backgroundColor: 'blue' }}
                     onPress={this.handleCancel}>
-                    <Text style={{color:'white'}}>Cancel</Text>
+                    <Text style={{ color: 'white' }}>Cancel</Text>
                 </TouchableOpacity>
                 {/* <Button style={{ width: '50%' }} onPress={this.handleSave} title="Save" />
                 <Button style={{ width: '50%' }} onPress={this.handleCancel} title="Cancel" /> */}
@@ -172,6 +179,30 @@ function GetQNumber() {
 }
 
 const styles = StyleSheet.create({
+
+    row: {
+        flex: 1,
+        flexDirection: "row"
+    },
+    inputWrap: {
+        flex: 1,
+        borderColor: "#cccccc",
+        borderBottomWidth: 1,
+        marginBottom: 10
+    },
+    inputdate: {
+        fontSize: 14,
+        marginBottom: -12,
+        color: "#6a4595",
+        flexGrow: 1
+    },
+    inputcvv: {
+        fontSize: 14,
+        marginBottom: -12,
+        color: "#6a4595"
+    },
+
+
     container: {
         flex: 1,
     },
@@ -233,7 +264,7 @@ const pickerSelectStyles = StyleSheet.create({
         fontSize: 16,
         paddingVertical: 12,
         paddingHorizontal: 10,
-        borderWidth: 1,
+        //borderWidth: 1,
         borderColor: 'gray',
         borderRadius: 4,
         color: 'black',
