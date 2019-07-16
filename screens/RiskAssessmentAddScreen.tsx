@@ -9,49 +9,6 @@ import RNPickerSelect from 'react-native-picker-select';
 import { CheckBox, Divider } from 'react-native-elements'
 import { Input } from 'react-native-elements'
 
-// const projects = [
-//     {
-//         label: 'Please select...',
-//         value: '',
-//     },
-//     {
-//         label: 'Q1231',
-//         value: 'Q1231',
-//     },
-//     {
-//         label: 'Q1232',
-//         value: 'Q1232',
-//     },
-//     {
-//         label: 'Q1233',
-//         value: 'Q1233',
-//     },
-//     {
-//         label: 'Q1234',
-//         value: 'Q1234',
-//     },
-//     {
-//         label: 'Q1236',
-//         value: 'Q1236',
-//     },
-//     {
-//         label: 'Q1237',
-//         value: 'Q1237',
-//     },
-//     {
-//         label: 'Q1238',
-//         value: 'Q1238',
-//     },
-//     {
-//         label: 'Q1239',
-//         value: 'Q1239',
-//     },
-//     {
-//         label: 'Q1240',
-//         value: 'Q1240',
-//     }
-// ];
-
 const projects = [
     {
         label: 'Please select...',
@@ -59,75 +16,75 @@ const projects = [
     },
     {
         label: 'Q2337 Project Planning Resources',
-        value: 'Q2337',
+        value: 'Q2337 Project Planning Resources',
     },
     {
         label: 'Q2385 Kelda Procurement',
-        value: 'Q2385',
+        value: 'Q2385 Kelda Procurement',
     },
     {
         label: 'Q2395 Kelda Business Development',
-        value: 'Q2395',
+        value: 'Q2395 Kelda Business Development',
     },
     {
         label: 'Q2396 Data Collection and Collation Services',
-        value: 'Q2396',
+        value: 'Q2396 Data Collection and Collation Services',
     },
     {
         label: 'Q2178 Meter verification and calibration at Tidworth',
-        value: 'Q2178',
+        value: 'Q2178 Meter verification and calibration at Tidworth',
     },
     {
         label: 'Q2489 Magor Replacement Meter',
-        value: 'Q2489',
+        value: 'Q2489 Magor Replacement Meter',
     },
     {
         label: 'Q2554 Verification of Desal Meters at Beckton',
-        value: 'Q2554',
+        value: 'Q2554 Verification of Desal Meters at Beckton',
     },
     {
         label: 'Q2440 HSBC Maintenance',
-        value: 'Q2440',
+        value: 'Q2440 HSBC Maintenance',
     },
     {
         label: 'Q2505 SW Logger Migration',
-        value: 'Q2505',
+        value: 'Q2505 SW Logger Migration',
     },
     {
         label: 'Q2150 Walton Ultrasonics',
-        value: 'Q2150',
+        value: 'Q2150 Walton Ultrasonics',
     },
     {
         label: 'Q2164 Walton - Temporary Metering',
-        value: 'Q2164',
+        value: 'Q2164 Walton - Temporary Metering',
     },
     {
         label: 'Q2368 Maple Lodge - Commission 7 Flowmeters',
-        value: 'Q2368',
+        value: 'Q2368 Maple Lodge - Commission 7 Flowmeters',
     },
     {
         label: 'Q2439 Repair to Flowmeter Transmitter',
-        value: 'Q2439',
+        value: 'Q2439 Repair to Flowmeter Transmitter',
     },
     {
         label: 'Q2490 Waltham Abbey STW Temporary Flowmeter Install & Survey',
-        value: 'Q2490',
+        value: 'Q2490 Waltham Abbey STW Temporary Flowmeter Install & Survey',
     },
     {
         label: 'Q2527 Flowmeter Investigation/Calibration Hampton AWTW',
-        value: 'Q2527',
+        value: 'Q2527 Flowmeter Investigation/Calibration Hampton AWTW',
     },
     {
         label: 'Q2539 Flow and Pressure Measurement - Rainham WWTW',
-        value: 'Q2539',
+        value: 'Q2539 Flow and Pressure Measurement - Rainham WWTW',
     }
     , {
         label: 'Q2564 Verification of 1400mm Full-Bore Flowmeter - TW - Honor Oak',
-        value: 'Q2564',
+        value: 'Q2564 Verification of 1400mm Full-Bore Flowmeter - TW - Honor Oak',
     },
     {
         label: 'Q2565 Fault Investigation of ABB MagMaster Full-Bore Flowmeter - Bovindon Res',
-        value: 'Q2565',
+        value: 'Q2565 Fault Investigation of ABB MagMaster Full-Bore Flowmeter - Bovindon Res',
     },
 ];
 
@@ -178,8 +135,8 @@ export default class RiskAssessmentAddScreen extends React.Component {
                     key: 'location' + riskAssessments.length,
                     location: this.state.text,
                     created: new Date(),
-                    ref: this.state.ref + ', AR20 Verifications Program - Verifications',
-                    task: 'Annual Verification',
+                    ref: this.state.ref,
+                    task: this.state.task,
                     submitted: new Date(),
                 });
                 AsyncStorage.setItem(AsyncStorageKeys.riskAssessments, JSON.stringify(riskAssessments));
@@ -191,7 +148,7 @@ export default class RiskAssessmentAddScreen extends React.Component {
                     location: this.state.text,
                     created: new Date(),
                     ref: this.state.ref + ', AR20 Verifications Program - Verifications',
-                    task: 'Annual Verification',
+                    task: this.state.task,
                     submitted: new Date(),
                 })
                 AsyncStorage.setItem(AsyncStorageKeys.riskAssessments, JSON.stringify(riskAssessments));
