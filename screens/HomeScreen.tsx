@@ -95,7 +95,7 @@ export default class HomeScreen extends React.Component<HomeScreenProps, State> 
 
   renderItem = ({ item }) => (
 
-    <ListItem button onPress={() => { this.Go(item.AssetId) }}
+    <ListItem onPress={() => { this.Go(item.AssetId) }}
       title={item.FullName}
       subtitle={item.JobTitle}
       leftAvatar={{ source: { uri: 'https://scontent-lht6-1.xx.fbcdn.net/v/t1.0-1/p40x40/23517478_328767537598470_8406965766959015695_n.jpg?_nc_cat=102&_nc_ht=scontent-lht6-1.xx&oh=8b14c5bdb88e92f79277e2d021481924&oe=5DC572B2' } }}
@@ -135,7 +135,6 @@ export default class HomeScreen extends React.Component<HomeScreenProps, State> 
       <View style={styles.container}>
         <FlatList
           data={this.state.dataSource}
-          ItemSeparatorComponent={this.FlatListItemSeparator}
           renderItem={item => this.renderItem(item)}
           keyExtractor={item => item.AssetId.toString()}
           ItemSeparatorComponent={this.renderSeparator}
