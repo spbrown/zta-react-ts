@@ -3,11 +3,28 @@ import { ActivityIndicator, AsyncStorage, FlatList, TouchableOpacity, StyleSheet
 import { Button, Header, Icon, ListItem, SearchBar } from 'react-native-elements';
 
 import AsyncStorageKeys from '../constants/AsyncStorageKeys';
+import { NavigationScreenProp } from 'react-navigation';
 
 // import { StackNavigator } from 'react-navigation';
 // import ProfileScreen from '../screens/ProfileScreen';
 
-export default class HomeScreen extends React.Component {
+interface HomeScreenProps {
+  navigation: NavigationScreenProp<any, any>
+};
+
+interface StaffMember{
+  Index: number,
+  AssetId: number,
+  FullName: string,
+  JobTitle: string
+}
+
+interface State {
+  loading: boolean,
+  dataSource: Array<StaffMember>,
+}
+
+export default class HomeScreen extends React.Component<HomeScreenProps, State> {
   static navigationOptions = {
     title: 'Staff',
   };

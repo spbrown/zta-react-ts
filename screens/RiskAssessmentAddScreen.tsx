@@ -89,11 +89,20 @@ const projects = [
     },
 ];
 
-export interface HomeScreenProps {
+interface HomeScreenProps {
     navigation: NavigationScreenProp<any, any>
 };
 
-export default class RiskAssessmentAddScreen extends React.Component<HomeScreenProps, object> {
+interface State {
+    text: string,
+    ref: string,
+    task: string,
+    checkedYes: boolean,
+    checkedNo: boolean,
+    checkedNA: boolean, 
+}
+
+export default class RiskAssessmentAddScreen extends React.Component<HomeScreenProps, State> {
     static navigationOptions = {
         title: 'Add Risk Assessment'
     };

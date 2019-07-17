@@ -25,7 +25,7 @@ export default class RiskAssessmentScreen extends React.Component {
     render() {
         return (
             <View style={styles.container}>
-                <Text style={styles.header}>This is where we show the detail if a Risk Assessment.</Text>
+                <Text style={styles.header}>This is where we show the detail of a Risk Assessment.</Text>
                 <View style={styles.detailWrapper}>
                     <Text style={styles.detailHeader}>location</Text>
                     <Text style={styles.detailItem}>{this.state.riskAssessment.location}</Text>
