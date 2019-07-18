@@ -9,6 +9,7 @@ import RNPickerSelect from 'react-native-picker-select';
 import { CheckBox, Divider } from 'react-native-elements'
 import { Input } from 'react-native-elements'
 import { NavigationScreenProp } from 'react-navigation';
+import { string } from 'prop-types';
 
 const projects = [
     {
@@ -93,13 +94,30 @@ interface HomeScreenProps {
     navigation: NavigationScreenProp<any, any>
 };
 
+interface RiskAssessment{
+    id: number,
+    key: string, 
+    location: string,
+    created: Date,
+    submitted: Date,
+    text: string,
+    ref: string,
+    task: string,
+}
+
 interface State {
+    id: number,
+    key: string, 
+    location: string,
+    created: Date,
+    submitted: Date,
     text: string,
     ref: string,
     task: string,
     checkedYes: boolean,
     checkedNo: boolean,
-    checkedNA: boolean, 
+    checkedNA: boolean,
+    riskAssessments: Array<RiskAssessment>, 
 }
 
 export default class RiskAssessmentAddScreen extends React.Component<HomeScreenProps, State> {
@@ -111,12 +129,18 @@ export default class RiskAssessmentAddScreen extends React.Component<HomeScreenP
         super(props);
 
         this.state = {
+            id: null,
+            location:'',
+            created:null,
+            submitted:null,
+            key:'',
             text: '',
             ref: '',
             task: '',
             checkedYes: false,
             checkedNo: false,
             checkedNA: false,
+            riskAssessments: null,
         };
     }
 
@@ -136,7 +160,7 @@ export default class RiskAssessmentAddScreen extends React.Component<HomeScreenP
 
     saveSettings = (settings) => {
 
-        var riskAssessments = [];
+        var riskAssessments = Array<RiskAssessment>();
 
         AsyncStorage.getItem(AsyncStorageKeys.riskAssessments, (error, result) => {
             console.log(result);
@@ -147,6 +171,7 @@ export default class RiskAssessmentAddScreen extends React.Component<HomeScreenP
                 riskAssessments.push({
                     id: uuid(),
                     key: 'location' + riskAssessments.length,
+                    text: '',
                     location: this.state.text,
                     created: new Date(),
                     ref: this.state.ref,
@@ -160,6 +185,7 @@ export default class RiskAssessmentAddScreen extends React.Component<HomeScreenP
                     id: uuid(),
                     key: 'location0',
                     location: this.state.text,
+                    text:'',
                     created: new Date(),
                     ref: this.state.ref + ', AR20 Verifications Program - Verifications',
                     task: this.state.task,
@@ -232,15 +258,15 @@ export default class RiskAssessmentAddScreen extends React.Component<HomeScreenP
                     </View>
                     <Text style={styles.textLabel2}>Do you have the correct tools, equipment and PPE for the job?</Text>
                     <View style={styles.row2}>
-                        <CheckBox title='Yes' />
-                        <CheckBox title='No' />
-                        <CheckBox title='N/A' />
+                        <CheckBox checked={false} title='Yes' />
+                        <CheckBox checked={false} title='No' />
+                        <CheckBox checked={false} title='N/A' />
                     </View>
                     <Text style={styles.textLabel2}>Are the method statement and permit details given correct?</Text>
                     <View style={styles.row2}>
-                        <CheckBox title='Yes' />
-                        <CheckBox title='No' />
-                        <CheckBox title='N/A' />
+                        <CheckBox checked={false} title='Yes' />
+                        <CheckBox checked={false} title='No' />
+                        <CheckBox checked={false} title='N/A' />
                     </View>
                     {/* <Text style={styles.textLabel2}>Are power tools and leads PAT tested?</Text>
                     <View style={styles.row2}>
