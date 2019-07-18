@@ -1,15 +1,13 @@
 import React from 'react';
-import { Button, Header, ListItem, withTheme } from 'react-native-elements';
-import { AsyncStorage, FlatList, Picker, TouchableOpacity, SectionList, StyleSheet, Text, TextInput, View, Image } from 'react-native';
-import Moment from 'moment';
-import AsyncStorageKeys from '../constants/AsyncStorageKeys';
-import uuid from 'uuid/v1';
-import { ScrollView } from 'react-native-gesture-handler';
+
+import { AsyncStorage, StyleSheet, Text, TextInput, View } from 'react-native';
+import { Button, CheckBox, Divider } from 'react-native-elements'
 import RNPickerSelect from 'react-native-picker-select';
-import { CheckBox, Divider } from 'react-native-elements'
-import { Input } from 'react-native-elements'
 import { NavigationScreenProp } from 'react-navigation';
-import { string } from 'prop-types';
+
+import uuid from 'uuid/v1';
+
+import AsyncStorageKeys from '../constants/AsyncStorageKeys';
 
 const projects = [
     {
@@ -94,9 +92,9 @@ interface HomeScreenProps {
     navigation: NavigationScreenProp<any, any>
 };
 
-interface RiskAssessment{
+interface RiskAssessment {
     id: number,
-    key: string, 
+    key: string,
     location: string,
     created: Date,
     submitted: Date,
@@ -107,7 +105,7 @@ interface RiskAssessment{
 
 interface State {
     id: number,
-    key: string, 
+    key: string,
     location: string,
     created: Date,
     submitted: Date,
@@ -117,7 +115,7 @@ interface State {
     checkedYes: boolean,
     checkedNo: boolean,
     checkedNA: boolean,
-    riskAssessments: Array<RiskAssessment>, 
+    riskAssessments: Array<RiskAssessment>,
 }
 
 export default class RiskAssessmentAddScreen extends React.Component<HomeScreenProps, State> {
@@ -130,10 +128,10 @@ export default class RiskAssessmentAddScreen extends React.Component<HomeScreenP
 
         this.state = {
             id: null,
-            location:'',
-            created:null,
-            submitted:null,
-            key:'',
+            location: '',
+            created: null,
+            submitted: null,
+            key: '',
             text: '',
             ref: '',
             task: '',
@@ -185,7 +183,7 @@ export default class RiskAssessmentAddScreen extends React.Component<HomeScreenP
                     id: uuid(),
                     key: 'location0',
                     location: this.state.text,
-                    text:'',
+                    text: '',
                     created: new Date(),
                     ref: this.state.ref + ', AR20 Verifications Program - Verifications',
                     task: this.state.task,
@@ -224,15 +222,6 @@ export default class RiskAssessmentAddScreen extends React.Component<HomeScreenP
                             value={this.state.task}
                         />
                     </View>
-                    {/* <View style={styles.row}>
-                        <Text style={styles.textLabel}>Q Number</Text>
-                        <TextInput
-                            style={styles.textInput}
-                            placeholder="Enter Q Number here"
-                            onChangeText={(ref) => this.setState({ ref })}
-                            value={this.state.ref}
-                        />
-                    </View> */}
                     <View style={styles.row4}>
                         <Text style={styles.textLabel}>Q Number</Text>
                         <RNPickerSelect
