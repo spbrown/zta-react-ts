@@ -1,11 +1,21 @@
 import React from 'react';
-import { Alert, AsyncStorage, FlatList, List, ScrollView, StyleSheet, Text, TouchableHighlight, View } from 'react-native';
-import { Icon, ListItem } from 'react-native-elements';
+
 import Moment from 'moment';
-import { SwipeListView } from 'react-native-swipe-list-view';
 import uuid from 'uuid/v1';
-import { Button } from 'react-native-elements';
+
+import { Alert, AsyncStorage, Dimensions, FlatList, StyleSheet, Text, View } from 'react-native';
+import { Button, Icon, ListItem } from 'react-native-elements';
+import { TabView, SceneMap } from 'react-native-tab-view';
+
 import AsyncStorageKeys from '../constants/AsyncStorageKeys';
+
+// const FirstRoute = () => (
+//   <View style={[styles.scene, { backgroundColor: '#ff4081' }]} ><Text>Stuff here for tab 1</Text></View>
+// );
+
+// const SecondRoute = () => (
+//   <View style={[styles.scene, { backgroundColor: '#673ab7' }]} ><Text>Stuff here for tab 2</Text></View>
+// );
 
 export default class RiskAssessmentsScreen extends React.Component {
 
@@ -20,7 +30,12 @@ export default class RiskAssessmentsScreen extends React.Component {
 
     super(props);
     this.state = {
-      riskAssessments: []
+      riskAssessments: [],
+      index: 0,
+      routes: [
+        { key: 'first', title: 'On This Phone' },
+        { key: 'second', title: 'On ZTA' },
+      ],
     };
 
     console.log(this.state.riskAssessments);
@@ -145,11 +160,11 @@ export default class RiskAssessmentsScreen extends React.Component {
     );
   };
 
-  render() {
-
+  renderTab1 = () => {
+    console.log('renderTab1()');
     return (
       <View style={styles.container}>
-        <Text style={styles.header}>This is where we show our list of Risk Assessments. We show all the Risk Assessments that are stored in local memory.</Text>
+        <Text style={styles.header}>Risk Assessments stored on on this phone.</Text>
         <FlatList
           data={this.state.riskAssessments}
           renderItem={this.renderItem}
@@ -168,6 +183,62 @@ export default class RiskAssessmentsScreen extends React.Component {
           </View>
         </View>
       </View>
+    );
+  }
+
+  renderTab2 = () => {
+    return (
+      <View style={styles.container}>
+        <Text style={styles.header}>Risk Assessments uploaded and stored on on ZTA.</Text>
+        <FlatList
+          data={null}
+          renderItem={this.renderItem}
+          ItemSeparatorComponent={this.renderSeparator}
+          keyExtractor={(item, index) => item.id}
+        />
+      </View>
+    );
+  }
+
+  render() {
+
+    return (
+      <TabView
+        navigationState={this.state}
+        renderScene={({ route }) => {
+          switch (route.key) {
+            case 'first':
+              return this.renderTab1();
+            case 'second':
+              return this.renderTab2();
+            default:
+              return null;
+          }
+        }}
+        onIndexChange={index => this.setState({ index })}
+        initialLayout={{ width: Dimensions.get('window').width }}
+      />
+
+      // <View style={styles.container}>
+      //   <Text style={styles.header}>This is where we show our list of Risk Assessments. We show all the Risk Assessments that are stored in local memory.</Text>
+      //   <FlatList
+      //     data={this.state.riskAssessments}
+      //     renderItem={this.renderItem}
+      //     ItemSeparatorComponent={this.renderSeparator}
+      //     keyExtractor={(item, index) => item.id}
+      //   />
+      //   <View style={styles.row3}>
+      //     <View style={styles.inputWrap}>
+      //       <Button onPress={this.addRiskAssessment} title="Add New" />
+      //     </View>
+      //     <View style={styles.inputWrap}>
+      //       <Button onPress={this.addTestRiskAssessment} title="Add Test" />
+      //     </View>
+      //     <View style={styles.inputWrap}>
+      //       <Button onPress={this.clearAsyncStorage} title="Clear All" />
+      //     </View>
+      //   </View>
+      // </View>
     );
   }
 
@@ -261,7 +332,7 @@ const styles = StyleSheet.create({
   },
   header: {
     backgroundColor: 'navy',
-    color:'orange',
+    color: 'orange',
     fontWeight: 'bold',
     padding: 12,
   },
