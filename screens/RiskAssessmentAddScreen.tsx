@@ -100,9 +100,9 @@ interface HomeScreenProps {
 interface BeforeWorkQuestion {
     Question: string,
     Options: [
-        { label: string, value?: boolean },
-        { label: string, value?: boolean },
-        { label: string, value?: boolean }
+        { label: string, value: string, selected: boolean },
+        { label: string, value: string, selected: boolean },
+        { label: string, value: string, selected: boolean },
     ]
 }
 
@@ -158,27 +158,27 @@ export default class RiskAssessmentAddScreen extends React.Component<HomeScreenP
             Question1:
             {
                 Question: 'Are you aware of the site safety rules and fire procedures?',
-                Options: [{ label: 'Yes', value:true, }, { label: 'No', value: false, }, { label: 'N/A', value: null, },]
+                Options: [{ label: 'Yes', value: 'yes', selected: false }, { label: 'No', value: 'no', selected: false }, { label: 'N/A', value: 'na', selected: true },]
             },
             Question2:
             {
                 Question: 'Do you have the correct tools, equipment and PPE for the job?',
-                Options: [{ label: 'Yes', value: true, }, { label: 'No', value: false, }, { label: 'N/A', value: null, },]
+                Options: [{ label: 'Yes', value: 'yes', selected: false }, { label: 'No', value: 'no', selected: false }, { label: 'N/A', value: 'na', selected: true },]
             },
             Question3:
             {
                 Question: 'Are the method statement and permit details given correct?',
-                Options: [{ label: 'Yes', value: true, }, { label: 'No', value: false, }, { label: 'N/A', value: null, },]
+                Options: [{ label: 'Yes', value: 'yes', selected: false }, { label: 'No', value: 'no', selected: false }, { label: 'N/A', value: 'na', selected: true },]
             },
             Question4:
             {
                 Question: 'Are power tools and leads PAT tested?',
-                Options: [{ label: 'Yes', value: true, }, { label: 'No', value: false, }, { label: 'N/A', value: null, },]
+                Options: [{ label: 'Yes', value: 'yes', selected: false }, { label: 'No', value: 'no', selected: false }, { label: 'N/A', value: 'na', selected: true },]
             },
             Question5:
             {
                 Question: 'Is lifting gear and test equipment inspected/within calibration?',
-                Options: [{ label: 'Yes', value: true, }, { label: 'No', value: false, }, { label: 'N/A', value: null, },]
+                Options: [{ label: 'Yes', value: 'yes', selected: false }, { label: 'No', value: 'no', selected: false }, { label: 'N/A', value: 'na', selected: true },]
             }
         };
     }
@@ -310,6 +310,7 @@ export default class RiskAssessmentAddScreen extends React.Component<HomeScreenP
                             flexDirection='row'
                         />
                     </View>
+                    <Divider/>
                     <Text style={styles.textLabel2}>{this.state.Question2.Question}</Text>
                     <View style={styles.row2}>
                         <RadioGroup
@@ -318,6 +319,7 @@ export default class RiskAssessmentAddScreen extends React.Component<HomeScreenP
                             flexDirection='row'
                         />
                     </View>
+                    <Divider/>
                     <Text style={styles.textLabel2}>{this.state.Question3.Question}</Text>
                     <View style={styles.row2}>
                         <RadioGroup
@@ -326,6 +328,7 @@ export default class RiskAssessmentAddScreen extends React.Component<HomeScreenP
                             flexDirection='row'
                         />
                     </View>
+                    <Divider/>
                     <Text style={styles.textLabel2}>{this.state.Question4.Question}</Text>
                     <View style={styles.row2}>
                         <RadioGroup
@@ -334,6 +337,7 @@ export default class RiskAssessmentAddScreen extends React.Component<HomeScreenP
                             flexDirection='row'
                         />
                     </View>
+                    <Divider/>
                     <Text style={styles.textLabel2}>{this.state.Question5.Question}</Text>
                     <View style={styles.row2}>
                         <RadioGroup
@@ -342,6 +346,7 @@ export default class RiskAssessmentAddScreen extends React.Component<HomeScreenP
                             flexDirection='row'
                         />
                     </View>
+                    <Divider/>
 
                     {/* <Text style={styles.textLabel2}>Are you aware of the site safety rules and fire procedures?</Text>
                     <View style={styles.row2}>
