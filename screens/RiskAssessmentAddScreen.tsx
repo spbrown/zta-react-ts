@@ -356,6 +356,18 @@ export default class RiskAssessmentAddScreen extends React.Component<HomeScreenP
         return (
             <View style={styles.container}>
                 <Text style={styles.header}>Add hazards here</Text>
+
+                <Text>Hazard</Text>
+                <Text>Prob before</Text>
+                <Text>Severity before</Text>
+                <Text>Resultant risk before</Text>
+                <Text>Controls</Text>
+                <Text>Prob after</Text>
+                <Text>Severity after</Text>
+                <Text>Resultant risk after</Text>
+
+
+
             </View>
         );
     }
