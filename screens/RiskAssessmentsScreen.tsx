@@ -9,21 +9,11 @@ import { TabBar, TabView, SceneMap } from 'react-native-tab-view';
 import { NavigationScreenProp } from 'react-navigation';
 
 import AsyncStorageKeys from '../constants/AsyncStorageKeys';
+import RiskAssessment from '../interfaces/RiskAssessment'
 
 interface RiskAssessmentsScreenProps {
   navigation: NavigationScreenProp<any, any>
 };
-
-interface RiskAssessment {
-  created: Date,
-  id: number,
-  key: string,
-  location: string,
-  ref: string,
-  submitted: Date,
-  task: string,
-  text: string,
-}
 
 interface State {
   index: number,
@@ -47,7 +37,7 @@ export default class RiskAssessmentsScreen extends React.Component<RiskAssessmen
       riskAssessments: [],
       index: 0,
       routes: [
-        { key: 'first', title: 'On This Phone' },
+        { key: 'first', title: 'On This Device' },
         { key: 'second', title: 'On ZTA' },
       ],
     };
@@ -142,6 +132,22 @@ export default class RiskAssessmentsScreen extends React.Component<RiskAssessmen
     this.props.navigation.navigate('RiskAssessment', { riskAssessment: riskAssessment })
   }
 
+  noItemDisplayDevice = () => {
+    return (
+      <ListItem
+        title='No Risk Assessments stored locally on this device.'
+      />
+    );
+  }
+
+  noItemDisplayZta = () => {
+    return (
+      <ListItem
+        title='No Risk Assessments stored on ZTA.'
+      />
+    );
+  }
+
   renderItem = ({ item }) => (
     <ListItem onPress={() => { this.Go(item) }}
       title={item.ref + ' ' + item.location}
@@ -178,12 +184,13 @@ export default class RiskAssessmentsScreen extends React.Component<RiskAssessmen
     console.log('renderTab1()');
     return (
       <View style={styles.container}>
-        <Text style={styles.header}>Risk Assessments stored on on this phone.</Text>
+        <Text style={styles.header}>Risk Assessments stored locally on on this device.</Text>
         <FlatList
           data={this.state.riskAssessments}
           renderItem={this.renderItem}
           ItemSeparatorComponent={this.renderSeparator}
           keyExtractor={(item, index) => item.id}
+          ListEmptyComponent={this.noItemDisplayDevice}
         />
         <View style={styles.row3}>
           <View style={styles.inputWrap}>
@@ -209,30 +216,29 @@ export default class RiskAssessmentsScreen extends React.Component<RiskAssessmen
           renderItem={this.renderItem}
           ItemSeparatorComponent={this.renderSeparator}
           keyExtractor={(item, index) => item.id}
+          ListEmptyComponent={this.noItemDisplayZta}
         />
       </View>
     );
   }
-
 
   render() {
 
     return (
       <TabView
 
-        // renderTabBar={props =>
-        //  <TabBar
-        //    {...props}
-        //    indicatorStyle={{ backgroundColor: 'white' }}
-        //    style={{ backgroundColor: 'navy' }}
-        //  />
-        // }
-
-        // renderLabel={({ route, focused, color }) => (
-        //   <Text style={{ color, margin: 8 }}>
-        //    {route.title}
-        //  </Text>
-        // )}
+        renderTabBar={props =>
+          <TabBar
+            {...props}
+            indicatorStyle={{ backgroundColor: 'orange' }}
+            style={{ backgroundColor: 'white' }}
+            renderLabel={({ route }) => (
+              <Text style={{ color: 'grey', fontWeight: 'bold', margin: 8 }}>
+                {route.title}
+              </Text>
+            )}
+          />
+        }
 
         navigationState={this.state}
         renderScene={({ route }) => {

@@ -8,6 +8,7 @@ import { NavigationScreenProp } from 'react-navigation';
 import uuid from 'uuid/v1';
 
 import AsyncStorageKeys from '../constants/AsyncStorageKeys';
+import RiskAssessment from '../interfaces/RiskAssessment'
 
 const projects = [
     {
@@ -91,17 +92,6 @@ const projects = [
 interface HomeScreenProps {
     navigation: NavigationScreenProp<any, any>
 };
-
-interface RiskAssessment {
-    created: Date,
-    id: number,
-    key: string,
-    location: string,
-    ref: string,
-    submitted: Date,
-    task: string,
-    text: string,
-}
 
 interface State {
     checkedNA: boolean,
