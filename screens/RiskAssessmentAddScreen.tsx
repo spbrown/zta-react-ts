@@ -93,29 +93,29 @@ interface HomeScreenProps {
 };
 
 interface RiskAssessment {
+    created: Date,
     id: number,
     key: string,
     location: string,
-    created: Date,
-    submitted: Date,
-    text: string,
     ref: string,
+    submitted: Date,
     task: string,
+    text: string,
 }
 
 interface State {
+    checkedNA: boolean,
+    checkedNo: boolean,
+    checkedYes: boolean,
+    created: Date,
     id: number,
     key: string,
     location: string,
-    created: Date,
-    submitted: Date,
-    text: string,
     ref: string,
-    task: string,
-    checkedYes: boolean,
-    checkedNo: boolean,
-    checkedNA: boolean,
     riskAssessments: Array<RiskAssessment>,
+    submitted: Date,
+    task: string,
+    text: string,
 }
 
 export default class RiskAssessmentAddScreen extends React.Component<HomeScreenProps, State> {
@@ -127,18 +127,18 @@ export default class RiskAssessmentAddScreen extends React.Component<HomeScreenP
         super(props);
 
         this.state = {
-            id: null,
-            location: '',
-            created: null,
-            submitted: null,
-            key: '',
-            text: '',
-            ref: '',
-            task: '',
-            checkedYes: false,
-            checkedNo: false,
             checkedNA: false,
+            checkedNo: false,
+            checkedYes: false,
+            created: null,
+            id: null,
+            key: '',
+            location: '',
+            ref: '',
             riskAssessments: null,
+            submitted: null,
+            task: '',
+            text: '',
         };
     }
 

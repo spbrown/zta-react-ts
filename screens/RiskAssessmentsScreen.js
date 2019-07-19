@@ -5,17 +5,9 @@ import uuid from 'uuid/v1';
 
 import { Alert, AsyncStorage, Dimensions, FlatList, StyleSheet, Text, View } from 'react-native';
 import { Button, Icon, ListItem } from 'react-native-elements';
-import { TabView, SceneMap } from 'react-native-tab-view';
+import { TabBar, TabView, SceneMap } from 'react-native-tab-view';
 
 import AsyncStorageKeys from '../constants/AsyncStorageKeys';
-
-// const FirstRoute = () => (
-//   <View style={[styles.scene, { backgroundColor: '#ff4081' }]} ><Text>Stuff here for tab 1</Text></View>
-// );
-
-// const SecondRoute = () => (
-//   <View style={[styles.scene, { backgroundColor: '#673ab7' }]} ><Text>Stuff here for tab 2</Text></View>
-// );
 
 export default class RiskAssessmentsScreen extends React.Component {
 
@@ -200,10 +192,26 @@ export default class RiskAssessmentsScreen extends React.Component {
     );
   }
 
+
   render() {
 
     return (
       <TabView
+
+        // renderTabBar={props =>
+        //  <TabBar
+        //    {...props}
+        //    indicatorStyle={{ backgroundColor: 'white' }}
+        //    style={{ backgroundColor: 'navy' }}
+        //  />
+        // }
+
+        // renderLabel={({ route, focused, color }) => (
+        //   <Text style={{ color, margin: 8 }}>
+        //    {route.title}
+        //  </Text>
+        // )}
+
         navigationState={this.state}
         renderScene={({ route }) => {
           switch (route.key) {
