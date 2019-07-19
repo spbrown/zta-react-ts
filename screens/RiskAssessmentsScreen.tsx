@@ -6,21 +6,43 @@ import uuid from 'uuid/v1';
 import { Alert, AsyncStorage, Dimensions, FlatList, StyleSheet, Text, View } from 'react-native';
 import { Button, Icon, ListItem } from 'react-native-elements';
 import { TabBar, TabView, SceneMap } from 'react-native-tab-view';
+import { NavigationScreenProp } from 'react-navigation';
 
 import AsyncStorageKeys from '../constants/AsyncStorageKeys';
 
-export default class RiskAssessmentsScreen extends React.Component {
+interface RiskAssessmentsScreenProps {
+  navigation: NavigationScreenProp<any, any>
+};
+
+interface RiskAssessment {
+  created: Date,
+  id: number,
+  key: string,
+  location: string,
+  ref: string,
+  submitted: Date,
+  task: string,
+  text: string,
+}
+
+interface State {
+  index: number,
+  riskAssessments: Array<RiskAssessment>,
+  routes: Array<{ key: string, title: string }>,
+}
+
+export default class RiskAssessmentsScreen extends React.Component<RiskAssessmentsScreenProps, State> {
 
   static navigationOptions = {
     title: 'Risk Assessments',
   };
 
   constructor(props) {
+    super(props);
 
     console.log('-----------------------');
     console.log('RisksScreen.constructor');
 
-    super(props);
     this.state = {
       riskAssessments: [],
       index: 0,
@@ -121,7 +143,7 @@ export default class RiskAssessmentsScreen extends React.Component {
   }
 
   renderItem = ({ item }) => (
-    <ListItem button onPress={() => { this.Go(item) }}
+    <ListItem onPress={() => { this.Go(item) }}
       title={item.ref + ' ' + item.location}
       subtitle={Moment(item.created).format('DD/MM/YYYY HH:mm:ss')}
       rightElement={this.renderRightElement(item)}
@@ -224,7 +246,7 @@ export default class RiskAssessmentsScreen extends React.Component {
           }
         }}
         onIndexChange={index => this.setState({ index })}
-        initialLayout={{ width: Dimensions.get('window').width }}
+        initialLayout={{ height: 25, width: Dimensions.get('window').width }}
       />
 
       // <View style={styles.container}>
