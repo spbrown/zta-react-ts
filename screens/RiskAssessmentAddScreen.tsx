@@ -12,6 +12,7 @@ import uuid from 'uuid/v1';
 
 import AsyncStorageKeys from '../constants/AsyncStorageKeys';
 import RiskAssessment from '../interfaces/RiskAssessment'
+import { string } from 'prop-types';
 
 const projects = [
     {
@@ -96,6 +97,15 @@ interface HomeScreenProps {
     navigation: NavigationScreenProp<any, any>
 };
 
+interface BeforeWorkQuestion {
+    Question: string,
+    Options: [
+        { label: string, value?: boolean },
+        { label: string, value?: boolean },
+        { label: string, value?: boolean }
+    ]
+}
+
 interface State {
     checkedNA: boolean,
     checkedNo: boolean,
@@ -111,6 +121,11 @@ interface State {
     text: string,
     index: number,
     routes: Array<{ key: string, title: string }>,
+    Question1: BeforeWorkQuestion,
+    Question2: BeforeWorkQuestion,
+    Question3: BeforeWorkQuestion,
+    Question4: BeforeWorkQuestion,
+    Question5: BeforeWorkQuestion,
 }
 
 export default class RiskAssessmentAddScreen extends React.Component<HomeScreenProps, State> {
@@ -140,21 +155,31 @@ export default class RiskAssessmentAddScreen extends React.Component<HomeScreenP
                 { key: 'BeforeWork', title: 'Before Work' },
                 { key: 'Hazards', title: 'Hazards' },
             ],
-            Question1: [
-                {
-                    label: 'Yes',
-                    value: { true},
-                },
-                {
-                    label: 'No',
-                    value: { false},
-                },
-                {
-                    label: 'N/A',
-                    value: null,
-                },
-            ],
-
+            Question1:
+            {
+                Question: 'Are you aware of the site safety rules and fire procedures?',
+                Options: [{ label: 'Yes', value:true, }, { label: 'No', value: false, }, { label: 'N/A', value: null, },]
+            },
+            Question2:
+            {
+                Question: 'Do you have the correct tools, equipment and PPE for the job?',
+                Options: [{ label: 'Yes', value: true, }, { label: 'No', value: false, }, { label: 'N/A', value: null, },]
+            },
+            Question3:
+            {
+                Question: 'Are the method statement and permit details given correct?',
+                Options: [{ label: 'Yes', value: true, }, { label: 'No', value: false, }, { label: 'N/A', value: null, },]
+            },
+            Question4:
+            {
+                Question: 'Are power tools and leads PAT tested?',
+                Options: [{ label: 'Yes', value: true, }, { label: 'No', value: false, }, { label: 'N/A', value: null, },]
+            },
+            Question5:
+            {
+                Question: 'Is lifting gear and test equipment inspected/within calibration?',
+                Options: [{ label: 'Yes', value: true, }, { label: 'No', value: false, }, { label: 'N/A', value: null, },]
+            }
         };
     }
 
@@ -264,13 +289,61 @@ export default class RiskAssessmentAddScreen extends React.Component<HomeScreenP
         );
     }
 
+    onPress = (data) => {
+        console.log('onPress()')
+        console.log(data.e)
+        let selectedButton = data.find(e => e.selected == true);
+        console.log(selectedButton);
+    }
+
     renderTabBeforeWork = () => {
         return (
             <View style={styles.container}>
                 <Text style={styles.header}>Before you start work, please answer these</Text>
                 <View style={styles.rows}>
 
-                    <Text style={styles.textLabel2}>Are you aware of the site safety rules and fire procedures?</Text>
+                    <Text style={styles.textLabel2}>{this.state.Question1.Question}</Text>
+                    <View style={styles.row2}>
+                        <RadioGroup
+                            radioButtons={this.state.Question1.Options}
+                            onPress={this.onPress}
+                            flexDirection='row'
+                        />
+                    </View>
+                    <Text style={styles.textLabel2}>{this.state.Question2.Question}</Text>
+                    <View style={styles.row2}>
+                        <RadioGroup
+                            radioButtons={this.state.Question2.Options}
+                            onPress={this.onPress}
+                            flexDirection='row'
+                        />
+                    </View>
+                    <Text style={styles.textLabel2}>{this.state.Question3.Question}</Text>
+                    <View style={styles.row2}>
+                        <RadioGroup
+                            radioButtons={this.state.Question3.Options}
+                            onPress={this.onPress}
+                            flexDirection='row'
+                        />
+                    </View>
+                    <Text style={styles.textLabel2}>{this.state.Question4.Question}</Text>
+                    <View style={styles.row2}>
+                        <RadioGroup
+                            radioButtons={this.state.Question4.Options}
+                            onPress={this.onPress}
+                            flexDirection='row'
+                        />
+                    </View>
+                    <Text style={styles.textLabel2}>{this.state.Question5.Question}</Text>
+                    <View style={styles.row2}>
+                        <RadioGroup
+                            radioButtons={this.state.Question5.Options}
+                            onPress={this.onPress}
+                            flexDirection='row'
+                        />
+                    </View>
+
+                    {/* <Text style={styles.textLabel2}>Are you aware of the site safety rules and fire procedures?</Text>
                     <View style={styles.row2}>
                         <CheckBox title='Yes' checked={this.state.checkedYes} onPress={() => this.setState({ checkedYes: !this.state.checkedYes })} />
                         <CheckBox title='No' checked={this.state.checkedNo} onPress={() => this.setState({ checkedNo: !this.state.checkedNo })} />
@@ -299,7 +372,7 @@ export default class RiskAssessmentAddScreen extends React.Component<HomeScreenP
                         <CheckBox checked={false} title='Yes' />
                         <CheckBox checked={false} title='No' />
                         <CheckBox checked={false} title='N/A' />
-                    </View>
+                    </View> */}
                 </View>
                 <View style={styles.row3}>
                     <View style={styles.inputWrap}>
@@ -313,27 +386,10 @@ export default class RiskAssessmentAddScreen extends React.Component<HomeScreenP
         );
     }
 
-    onPress = (data) => {
-        console.log('onPress()')
-        let selectedButton = data.find(e => e.selected == true);
-        console.log(selectedButton.value);
-    }
-
-
     renderTabHazards = () => {
         return (
             <View style={styles.container}>
                 <Text style={styles.header}>Add hazards here</Text>
-                <View style={styles.rows}>
-                    <Text style={styles.textLabel2}>Are you aware of the site safety rules and fire procedures?</Text>
-                    <View style={styles.row2}>
-                        <RadioGroup
-                            radioButtons={this.state.Question1}
-                            onPress={this.onPress}
-                            flexDirection='row'
-                        />
-                    </View>
-                </View>
             </View>
         );
     }
