@@ -310,7 +310,7 @@ export default class RiskAssessmentAddScreen extends React.Component<HomeScreenP
                             flexDirection='row'
                         />
                     </View>
-                    <Divider/>
+                    <Divider />
                     <Text style={styles.textLabel2}>{this.state.Question2.Question}</Text>
                     <View style={styles.row2}>
                         <RadioGroup
@@ -319,7 +319,7 @@ export default class RiskAssessmentAddScreen extends React.Component<HomeScreenP
                             flexDirection='row'
                         />
                     </View>
-                    <Divider/>
+                    <Divider />
                     <Text style={styles.textLabel2}>{this.state.Question3.Question}</Text>
                     <View style={styles.row2}>
                         <RadioGroup
@@ -328,7 +328,7 @@ export default class RiskAssessmentAddScreen extends React.Component<HomeScreenP
                             flexDirection='row'
                         />
                     </View>
-                    <Divider/>
+                    <Divider />
                     <Text style={styles.textLabel2}>{this.state.Question4.Question}</Text>
                     <View style={styles.row2}>
                         <RadioGroup
@@ -337,7 +337,7 @@ export default class RiskAssessmentAddScreen extends React.Component<HomeScreenP
                             flexDirection='row'
                         />
                     </View>
-                    <Divider/>
+                    <Divider />
                     <Text style={styles.textLabel2}>{this.state.Question5.Question}</Text>
                     <View style={styles.row2}>
                         <RadioGroup
@@ -346,46 +346,7 @@ export default class RiskAssessmentAddScreen extends React.Component<HomeScreenP
                             flexDirection='row'
                         />
                     </View>
-                    <Divider/>
-
-                    {/* <Text style={styles.textLabel2}>Are you aware of the site safety rules and fire procedures?</Text>
-                    <View style={styles.row2}>
-                        <CheckBox title='Yes' checked={this.state.checkedYes} onPress={() => this.setState({ checkedYes: !this.state.checkedYes })} />
-                        <CheckBox title='No' checked={this.state.checkedNo} onPress={() => this.setState({ checkedNo: !this.state.checkedNo })} />
-                        <CheckBox title='N/A' checked={this.state.checkedNA} onPress={() => this.setState({ checkedNA: !this.state.checkedNA })} />
-                    </View>
-                    <Text style={styles.textLabel2}>Do you have the correct tools, equipment and PPE for the job?</Text>
-                    <View style={styles.row2}>
-                        <CheckBox checked={false} title='Yes' />
-                        <CheckBox checked={false} title='No' />
-                        <CheckBox checked={false} title='N/A' />
-                    </View>
-                    <Text style={styles.textLabel2}>Are the method statement and permit details given correct?</Text>
-                    <View style={styles.row2}>
-                        <CheckBox checked={false} title='Yes' />
-                        <CheckBox checked={false} title='No' />
-                        <CheckBox checked={false} title='N/A' />
-                    </View>
-                    <Text style={styles.textLabel2}>Are power tools and leads PAT tested?</Text>
-                    <View style={styles.row2}>
-                        <CheckBox checked={false} title='Yes' />
-                        <CheckBox checked={false} title='No' />
-                        <CheckBox checked={false} title='N/A' />
-                    </View>
-                    <Text style={styles.textLabel2}>Is lifting gear and test equipment inspected/within calibration?</Text>
-                    <View style={styles.row2}>
-                        <CheckBox checked={false} title='Yes' />
-                        <CheckBox checked={false} title='No' />
-                        <CheckBox checked={false} title='N/A' />
-                    </View> */}
-                </View>
-                <View style={styles.row3}>
-                    <View style={styles.inputWrap}>
-                        <Button title="Save" onPress={this.handleSave} />
-                    </View>
-                    <View style={styles.inputWrap}>
-                        <Button title="Cancel" onPress={this.handleCancel} />
-                    </View>
+                    <Divider />
                 </View>
             </View>
         );
