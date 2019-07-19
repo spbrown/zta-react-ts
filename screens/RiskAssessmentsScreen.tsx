@@ -37,8 +37,8 @@ export default class RiskAssessmentsScreen extends React.Component<RiskAssessmen
       riskAssessments: [],
       index: 0,
       routes: [
-        { key: 'first', title: 'On This Device' },
-        { key: 'second', title: 'On ZTA' },
+        { key: 'onDevice', title: 'On This Device' },
+        { key: 'onZta', title: 'On ZTA' },
       ],
     };
 
@@ -180,8 +180,7 @@ export default class RiskAssessmentsScreen extends React.Component<RiskAssessmen
     );
   };
 
-  renderTab1 = () => {
-    console.log('renderTab1()');
+  renderTabDevice = () => {
     return (
       <View style={styles.container}>
         <Text style={styles.header}>Risk Assessments stored locally on on this device.</Text>
@@ -207,7 +206,7 @@ export default class RiskAssessmentsScreen extends React.Component<RiskAssessmen
     );
   }
 
-  renderTab2 = () => {
+  renderTabZta = () => {
     return (
       <View style={styles.container}>
         <Text style={styles.header}>Risk Assessments uploaded and stored on on ZTA.</Text>
@@ -243,10 +242,10 @@ export default class RiskAssessmentsScreen extends React.Component<RiskAssessmen
         navigationState={this.state}
         renderScene={({ route }) => {
           switch (route.key) {
-            case 'first':
-              return this.renderTab1();
-            case 'second':
-              return this.renderTab2();
+            case 'onDevice':
+              return this.renderTabDevice();
+            case 'onZta':
+              return this.renderTabZta();
             default:
               return null;
           }

@@ -21,6 +21,8 @@
     "react-native": "https://github.com/expo/react-native/archive/sdk-33.0.0.tar.gz",
     "react-native-elements": "^1.1.0",
     "react-native-picker-select": "^6.3.0",
+    "react-native-radio-buttons-group": "^1.0.7",
+    "react-native-simple-radio-button": "^2.7.3",
     "react-native-swipe-list-view": "^1.5.8",
     "react-native-tab-view": "^2.9.0",
     "react-native-web": "^0.11.4",

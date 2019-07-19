@@ -6,5 +6,4 @@ export default interface RiskAssessment {
     ref: string,
     submitted: Date,
     task: string,
-    text: string,
   }

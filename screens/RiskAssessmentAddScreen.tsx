@@ -1,9 +1,12 @@
 import React from 'react';
 
-import { AsyncStorage, StyleSheet, Text, TextInput, View } from 'react-native';
+import { AsyncStorage, Dimensions, StyleSheet, Text, TextInput, View } from 'react-native';
 import { Button, CheckBox, Divider } from 'react-native-elements'
 import RNPickerSelect from 'react-native-picker-select';
+import { TabBar, TabView, SceneMap } from 'react-native-tab-view';
 import { NavigationScreenProp } from 'react-navigation';
+
+import RadioGroup from 'react-native-radio-buttons-group';
 
 import uuid from 'uuid/v1';
 
@@ -106,6 +109,8 @@ interface State {
     submitted: Date,
     task: string,
     text: string,
+    index: number,
+    routes: Array<{ key: string, title: string }>,
 }
 
 export default class RiskAssessmentAddScreen extends React.Component<HomeScreenProps, State> {
@@ -129,6 +134,27 @@ export default class RiskAssessmentAddScreen extends React.Component<HomeScreenP
             submitted: null,
             task: '',
             text: '',
+            index: 0,
+            routes: [
+                { key: 'General', title: 'General' },
+                { key: 'BeforeWork', title: 'Before Work' },
+                { key: 'Hazards', title: 'Hazards' },
+            ],
+            Question1: [
+                {
+                    label: 'Yes',
+                    value: { true},
+                },
+                {
+                    label: 'No',
+                    value: { false},
+                },
+                {
+                    label: 'N/A',
+                    value: null,
+                },
+            ],
+
         };
     }
 
@@ -157,27 +183,25 @@ export default class RiskAssessmentAddScreen extends React.Component<HomeScreenP
                 riskAssessments = JSON.parse(result);
                 console.log(riskAssessments);
                 riskAssessments.push({
+                    created: new Date(),
                     id: uuid(),
                     key: 'location' + riskAssessments.length,
-                    text: '',
                     location: this.state.text,
-                    created: new Date(),
                     ref: this.state.ref,
-                    task: this.state.task,
                     submitted: new Date(),
+                    task: this.state.task,
                 });
                 AsyncStorage.setItem(AsyncStorageKeys.riskAssessments, JSON.stringify(riskAssessments));
             }
             else {
                 riskAssessments.push({
+                    created: new Date(),
                     id: uuid(),
                     key: 'location0',
                     location: this.state.text,
-                    text: '',
-                    created: new Date(),
                     ref: this.state.ref + ', AR20 Verifications Program - Verifications',
-                    task: this.state.task,
                     submitted: new Date(),
+                    task: this.state.task,
                 })
                 AsyncStorage.setItem(AsyncStorageKeys.riskAssessments, JSON.stringify(riskAssessments));
             }
@@ -189,10 +213,10 @@ export default class RiskAssessmentAddScreen extends React.Component<HomeScreenP
 
     }
 
-    render() {
+    renderTabGeneral = () => {
         return (
             <View style={styles.container}>
-                <Text style={styles.header}>This is where we add a new Risk Assessment.</Text>
+                <Text style={styles.header}>Enter general information for this Risk Assessment</Text>
                 <View style={styles.rows}>
                     <View style={styles.row}>
                         <Text style={styles.textLabel}>Location</Text>
@@ -227,8 +251,25 @@ export default class RiskAssessmentAddScreen extends React.Component<HomeScreenP
                             useNativeAndroidPickerStyle={false}
                         />
                     </View>
+                </View>
+                <View style={styles.row3}>
+                    <View style={styles.inputWrap}>
+                        <Button title="Save" onPress={this.handleSave} />
+                    </View>
+                    <View style={styles.inputWrap}>
+                        <Button title="Cancel" onPress={this.handleCancel} />
+                    </View>
+                </View>
+            </View>
+        );
+    }
 
-                    <Divider style={styles.divider} />
+    renderTabBeforeWork = () => {
+        return (
+            <View style={styles.container}>
+                <Text style={styles.header}>Before you start work, please answer these</Text>
+                <View style={styles.rows}>
+
                     <Text style={styles.textLabel2}>Are you aware of the site safety rules and fire procedures?</Text>
                     <View style={styles.row2}>
                         <CheckBox title='Yes' checked={this.state.checkedYes} onPress={() => this.setState({ checkedYes: !this.state.checkedYes })} />
@@ -247,18 +288,18 @@ export default class RiskAssessmentAddScreen extends React.Component<HomeScreenP
                         <CheckBox checked={false} title='No' />
                         <CheckBox checked={false} title='N/A' />
                     </View>
-                    {/* <Text style={styles.textLabel2}>Are power tools and leads PAT tested?</Text>
+                    <Text style={styles.textLabel2}>Are power tools and leads PAT tested?</Text>
                     <View style={styles.row2}>
-                        <CheckBox title='Yes' />
-                        <CheckBox title='No' />
-                        <CheckBox title='N/A' />
+                        <CheckBox checked={false} title='Yes' />
+                        <CheckBox checked={false} title='No' />
+                        <CheckBox checked={false} title='N/A' />
                     </View>
                     <Text style={styles.textLabel2}>Is lifting gear and test equipment inspected/within calibration?</Text>
                     <View style={styles.row2}>
-                        <CheckBox title='Yes' />
-                        <CheckBox title='No' />
-                        <CheckBox title='N/A' />
-                    </View> */}
+                        <CheckBox checked={false} title='Yes' />
+                        <CheckBox checked={false} title='No' />
+                        <CheckBox checked={false} title='N/A' />
+                    </View>
                 </View>
                 <View style={styles.row3}>
                     <View style={styles.inputWrap}>
@@ -269,6 +310,71 @@ export default class RiskAssessmentAddScreen extends React.Component<HomeScreenP
                     </View>
                 </View>
             </View>
+        );
+    }
+
+    onPress = (data) => {
+        console.log('onPress()')
+        let selectedButton = data.find(e => e.selected == true);
+        console.log(selectedButton.value);
+    }
+
+
+    renderTabHazards = () => {
+        return (
+            <View style={styles.container}>
+                <Text style={styles.header}>Add hazards here</Text>
+                <View style={styles.rows}>
+                    <Text style={styles.textLabel2}>Are you aware of the site safety rules and fire procedures?</Text>
+                    <View style={styles.row2}>
+                        <RadioGroup
+                            radioButtons={this.state.Question1}
+                            onPress={this.onPress}
+                            flexDirection='row'
+                        />
+                    </View>
+                </View>
+            </View>
+        );
+    }
+
+    render() {
+        return (
+
+            <TabView
+
+                renderTabBar={props =>
+                    <TabBar
+                        {...props}
+                        indicatorStyle={{ backgroundColor: 'orange' }}
+                        style={{ backgroundColor: 'white' }}
+                        renderLabel={({ route }) => (
+                            <Text style={{ color: 'grey', fontWeight: 'bold', margin: 8 }}>
+                                {route.title}
+                            </Text>
+                        )}
+                    />
+                }
+
+                navigationState={this.state}
+                renderScene={({ route }) => {
+                    switch (route.key) {
+                        case 'General':
+                            return this.renderTabGeneral();
+                        case 'BeforeWork':
+                            return this.renderTabBeforeWork();
+                        case 'Hazards':
+                            return this.renderTabHazards();
+                        default:
+                            return null;
+                    }
+                }}
+                onIndexChange={index => this.setState({ index })}
+                initialLayout={{ height: 25, width: Dimensions.get('window').width }}
+            />
+
+
+
 
         );
     }
