@@ -158,27 +158,42 @@ export default class RiskAssessmentAddScreen extends React.Component<HomeScreenP
             Question1:
             {
                 Question: 'Are you aware of the site safety rules and fire procedures?',
-                Options: [{ label: 'Yes', value: 'yes', selected: false }, { label: 'No', value: 'no', selected: false }, { label: 'N/A', value: 'na', selected: true },]
+                Options: [
+                    { label: 'Yes', value: 'yes', selected: false },
+                    { label: 'No', value: 'no', selected: false },
+                    { label: 'N/A', value: 'na', selected: true },]
             },
             Question2:
             {
                 Question: 'Do you have the correct tools, equipment and PPE for the job?',
-                Options: [{ label: 'Yes', value: 'yes', selected: false }, { label: 'No', value: 'no', selected: false }, { label: 'N/A', value: 'na', selected: true },]
+                Options: [
+                    { label: 'Yes', value: 'yes', selected: false },
+                    { label: 'No', value: 'no', selected: false },
+                    { label: 'N/A', value: 'na', selected: true },]
             },
             Question3:
             {
                 Question: 'Are the method statement and permit details given correct?',
-                Options: [{ label: 'Yes', value: 'yes', selected: false }, { label: 'No', value: 'no', selected: false }, { label: 'N/A', value: 'na', selected: true },]
+                Options: [
+                    { label: 'Yes', value: 'yes', selected: false },
+                    { label: 'No', value: 'no', selected: false },
+                    { label: 'N/A', value: 'na', selected: true },]
             },
             Question4:
             {
                 Question: 'Are power tools and leads PAT tested?',
-                Options: [{ label: 'Yes', value: 'yes', selected: false }, { label: 'No', value: 'no', selected: false }, { label: 'N/A', value: 'na', selected: true },]
+                Options: [
+                    { label: 'Yes', value: 'yes', selected: false },
+                    { label: 'No', value: 'no', selected: false },
+                    { label: 'N/A', value: 'na', selected: true },]
             },
             Question5:
             {
                 Question: 'Is lifting gear and test equipment inspected/within calibration?',
-                Options: [{ label: 'Yes', value: 'yes', selected: false }, { label: 'No', value: 'no', selected: false }, { label: 'N/A', value: 'na', selected: true },]
+                Options: [
+                    { label: 'Yes', value: 'yes', selected: false },
+                    { label: 'No', value: 'no', selected: false },
+                    { label: 'N/A', value: 'na', selected: true },]
             }
         };
     }
@@ -215,6 +230,11 @@ export default class RiskAssessmentAddScreen extends React.Component<HomeScreenP
                     ref: this.state.ref,
                     submitted: new Date(),
                     task: this.state.task,
+                    question1: false,
+                    question2: true,
+                    question3: null,
+                    question4: true,
+                    question5: false,
                 });
                 AsyncStorage.setItem(AsyncStorageKeys.riskAssessments, JSON.stringify(riskAssessments));
             }
@@ -227,6 +247,11 @@ export default class RiskAssessmentAddScreen extends React.Component<HomeScreenP
                     ref: this.state.ref + ', AR20 Verifications Program - Verifications',
                     submitted: new Date(),
                     task: this.state.task,
+                    question1: false,
+                    question2: true,
+                    question3: null,
+                    question4: true,
+                    question5: false,
                 })
                 AsyncStorage.setItem(AsyncStorageKeys.riskAssessments, JSON.stringify(riskAssessments));
             }
@@ -356,7 +381,6 @@ export default class RiskAssessmentAddScreen extends React.Component<HomeScreenP
         return (
             <View style={styles.container}>
                 <Text style={styles.header}>Add hazards here</Text>
-
                 <Text>Hazard</Text>
                 <Text>Prob before</Text>
                 <Text>Severity before</Text>
@@ -365,9 +389,6 @@ export default class RiskAssessmentAddScreen extends React.Component<HomeScreenP
                 <Text>Prob after</Text>
                 <Text>Severity after</Text>
                 <Text>Resultant risk after</Text>
-
-
-
             </View>
         );
     }
@@ -406,9 +427,6 @@ export default class RiskAssessmentAddScreen extends React.Component<HomeScreenP
                 onIndexChange={index => this.setState({ index })}
                 initialLayout={{ height: 25, width: Dimensions.get('window').width }}
             />
-
-
-
 
         );
     }
