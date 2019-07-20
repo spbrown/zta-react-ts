@@ -27,47 +27,51 @@ export default class RiskAssessmentScreen extends React.Component {
             <View style={styles.container}>
                 <Text style={styles.header}>This is where we show the detail of a Risk Assessment.</Text>
                 <ScrollView>
-                <View style={styles.detailWrapper}>
-                    <Text style={styles.detailHeader}>location</Text>
-                    <Text style={styles.detailItem}>{this.state.riskAssessment.location}</Text>
-                </View>
-                <View style={styles.detailWrapper}>
-                    <Text style={styles.detailHeader}>task</Text>
-                    <Text style={styles.detailItem}>{this.state.riskAssessment.task}</Text>
-                </View>
-                <View style={styles.detailWrapper}>
-                    <Text style={styles.detailHeader}>q number</Text>
-                    <Text style={styles.detailItem}>{this.state.riskAssessment.ref}</Text>
-                </View>
-                <View style={styles.detailWrapper}>
-                    <Text style={styles.detailHeader}>created</Text>
-                    <Text style={styles.detailItem}>{Moment(this.state.riskAssessment.created).format('DD/MM/YYYY HH:mm:ss')}</Text>
-                </View>
-                <View style={styles.detailWrapper}>
-                    <Text style={styles.detailHeader}>submitted</Text>
-                    <Text style={styles.detailItem}>{Moment(this.state.riskAssessment.submitted).format('DD/MM/YYYY HH:mm:ss')}</Text>
-                </View>
+                    <View style={styles.detailWrapper}>
+                        <Text style={styles.detailHeader}>location</Text>
+                        <Text style={styles.detailItem}>{this.state.riskAssessment.location}</Text>
+                    </View>
+                    <View style={styles.detailWrapper}>
+                        <Text style={styles.detailHeader}>task</Text>
+                        <Text style={styles.detailItem}>{this.state.riskAssessment.task}</Text>
+                    </View>
+                    <View style={styles.detailWrapper}>
+                        <Text style={styles.detailHeader}>q number</Text>
+                        <Text style={styles.detailItem}>{this.state.riskAssessment.ref}</Text>
+                    </View>
+                    <View style={styles.detailWrapper}>
+                        <Text style={styles.detailHeader}>created</Text>
+                        <Text style={styles.detailItem}>{Moment(this.state.riskAssessment.created).format('DD/MM/YYYY HH:mm:ss')}</Text>
+                    </View>
+                    <View style={styles.detailWrapper}>
+                        <Text style={styles.detailHeader}>submitted</Text>
+                        <Text style={styles.detailItem}>{Moment(this.state.riskAssessment.submitted).format('DD/MM/YYYY HH:mm:ss')}</Text>
+                    </View>
 
-                <View style={styles.detailWrapper}>
-                    <Text style={styles.detailHeader}>Are you aware of the site safety rules and fire procedures?</Text>
-                    <Text style={styles.detailItem}>{this.state.riskAssessment.question1 == null ? 'N/A' : this.state.riskAssessment.question1 ? 'Yes' : 'No'}</Text>
-                </View>
-                <View style={styles.detailWrapper}>
-                    <Text style={styles.detailHeader}>Do you have the correct tools, equipment and PPE for the job?</Text>
-                    <Text style={styles.detailItem}>{this.state.riskAssessment.question2 == null ? 'N/A' : this.state.riskAssessment.question2 ? 'Yes' : 'No'}</Text>
-                </View>
-                <View style={styles.detailWrapper}>
-                    <Text style={styles.detailHeader}>Are the method statement and permit details given correct?</Text>
-                    <Text style={styles.detailItem}>{this.state.riskAssessment.question3 == null ? 'N/A' : this.state.riskAssessment.question3 ? 'Yes' : 'No'}</Text>
-                </View>
-                <View style={styles.detailWrapper}>
-                    <Text style={styles.detailHeader}>Are power tools and leads PAT tested?</Text>
-                    <Text style={styles.detailItem}>{this.state.riskAssessment.question4 == null ? 'N/A' : this.state.riskAssessment.question4  ? 'Yes' : 'No'}</Text>
-                </View>
-                <View style={styles.detailWrapper}>
-                    <Text style={styles.detailHeader}>Is lifting gear and test equipment inspected/within calibration?</Text>
-                    <Text style={styles.detailItem}>{this.state.riskAssessment.question5 == null ? 'N/A' : this.state.riskAssessment.question5 ? 'Yes' : 'No'}</Text>
-                </View>
+                    <View style={styles.beforeWorkWrapper}>
+                        <Text style={styles.beforeWorkHeader}>Are you aware of the site safety rules and fire procedures?</Text>
+                        {/* <Text style={styles.detailItem}>{this.state.riskAssessment.question1 == null ? 'N/A' : this.state.riskAssessment.question1 ? 'Yes' : 'No'}</Text> */}
+                        <Text style={GetBeforeWorkStyle(this.state.riskAssessment.question1)}>{GetBeforeWorkText(this.state.riskAssessment.question1)}</Text>
+                    </View>
+                    <View style={styles.beforeWorkWrapper}>
+                        <Text style={styles.beforeWorkHeader}>Do you have the correct tools, equipment and PPE for the job?</Text>
+                        {/* <Text style={styles.detailItem}>{this.state.riskAssessment.question2 == null ? 'N/A' : this.state.riskAssessment.question2 ? 'Yes' : 'No'}</Text> */}
+                        <Text style={GetBeforeWorkStyle(this.state.riskAssessment.question2)}>{GetBeforeWorkText(this.state.riskAssessment.question2)}</Text>
+                    </View>
+                    <View style={styles.beforeWorkWrapper}>
+                        <Text style={styles.beforeWorkHeader}>Are the method statement and permit details given correct?</Text>
+                        {/* <Text style={styles.detailItem}>{this.state.riskAssessment.question3 == null ? 'N/A' : this.state.riskAssessment.question3 ? 'Yes' : 'No'}</Text> */}
+                        <Text style={GetBeforeWorkStyle(this.state.riskAssessment.question3)}>{GetBeforeWorkText(this.state.riskAssessment.question3)}</Text>
+                    </View>
+                    <View style={styles.beforeWorkWrapper}>
+                        <Text style={styles.beforeWorkHeader}>Are power tools and leads PAT tested?</Text>
+                        {/* <Text style={styles.detailItem}>{this.state.riskAssessment.question4 == null ? 'N/A' : this.state.riskAssessment.question4 ? 'Yes' : 'No'}</Text> */}
+                        <Text style={GetBeforeWorkStyle(this.state.riskAssessment.question4)}>{GetBeforeWorkText(this.state.riskAssessment.question4)}</Text>
+                    </View>
+                    <View style={styles.beforeWorkWrapper}>
+                        <Text style={styles.beforeWorkHeader}>Is lifting gear and test equipment inspected/within calibration?</Text>
+                        <Text style={GetBeforeWorkStyle(this.state.riskAssessment.question5)}>{GetBeforeWorkText(this.state.riskAssessment.question5)}</Text>
+                    </View>
                 </ScrollView>
             </View>
 
@@ -75,7 +79,66 @@ export default class RiskAssessmentScreen extends React.Component {
     }
 }
 
+function GetBeforeWorkStyle(option) {
+
+    if (option == null) {
+        return styles.beforeWorkNotApplicable;
+    }
+
+    if (option) {
+        return styles.beforeWorkYes;
+    }
+    else {
+        return styles.beforeWorkNo;
+    }
+}
+
+function GetBeforeWorkText(option) {
+
+    if (option == null) {
+        return 'N/A';
+    }
+
+    if (option) {
+        return 'Yes';
+    }
+    else {
+        return 'No';
+    }
+}
+
 const styles = StyleSheet.create({
+
+    beforeWorkHeader: {
+        //height: 20,
+        width: '75%',
+    },
+    beforeWorkNotApplicable: {
+        backgroundColor: 'orange',
+        color: 'white',
+        width: '25%',
+    },
+    beforeWorkYes: {
+        backgroundColor: 'green',
+        color: 'white',
+        width: '25%',
+    },
+    beforeWorkNo: {
+        backgroundColor: 'red',
+        color: 'white',
+        width: '25%',
+    },
+    beforeWorkWrapper: {
+        flexDirection: 'row',
+        height: 45,
+        //padding: 10,
+        margin: 10,
+        paddingBottom: 10,
+        borderBottomWidth: 1,
+        borderBottomColor: '#ddd',
+        // backgroundColor:'#eee'
+    },
+
     container: {
         flex: 1,
     },
@@ -120,5 +183,6 @@ const styles = StyleSheet.create({
     name: {
         fontSize: 25,
         color: 'grey',
-    }
+    },
+
 });
