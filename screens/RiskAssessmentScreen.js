@@ -1,6 +1,6 @@
 import React from 'react';
 import { Button, Header, ListItem, withTheme } from 'react-native-elements';
-import { FlatList, TouchableOpacity, SectionList, StyleSheet, Text, View, Image } from 'react-native';
+import { FlatList, TouchableOpacity, SectionList, ScrollView, StyleSheet, Text, View, Image } from 'react-native';
 //import console = require('console');
 import Moment from 'moment';
 
@@ -26,6 +26,7 @@ export default class RiskAssessmentScreen extends React.Component {
         return (
             <View style={styles.container}>
                 <Text style={styles.header}>This is where we show the detail of a Risk Assessment.</Text>
+                <ScrollView>
                 <View style={styles.detailWrapper}>
                     <Text style={styles.detailHeader}>location</Text>
                     <Text style={styles.detailItem}>{this.state.riskAssessment.location}</Text>
@@ -67,6 +68,7 @@ export default class RiskAssessmentScreen extends React.Component {
                     <Text style={styles.detailHeader}>Is lifting gear and test equipment inspected/within calibration?</Text>
                     <Text style={styles.detailItem}>{this.state.riskAssessment.question5 == null ? 'N/A' : this.state.riskAssessment.question5 ? 'Yes' : 'No'}</Text>
                 </View>
+                </ScrollView>
             </View>
 
         );

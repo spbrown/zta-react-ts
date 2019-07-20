@@ -1,6 +1,6 @@
 import React from 'react';
 
-import { AsyncStorage, Dimensions, StyleSheet, Text, TextInput, View } from 'react-native';
+import { AsyncStorage, Dimensions, ScrollView, StyleSheet, Text, TextInput, View } from 'react-native';
 import { Button, CheckBox, Divider } from 'react-native-elements'
 import RNPickerSelect from 'react-native-picker-select';
 import { TabBar, TabView, SceneMap } from 'react-native-tab-view';
@@ -325,6 +325,7 @@ export default class RiskAssessmentAddScreen extends React.Component<HomeScreenP
         return (
             <View style={styles.container}>
                 <Text style={styles.header}>Before you start work, please answer these</Text>
+                <ScrollView>
                 <View style={styles.rows}>
 
                     <Text style={styles.textLabel2}>{this.state.Question1.Question}</Text>
@@ -373,6 +374,7 @@ export default class RiskAssessmentAddScreen extends React.Component<HomeScreenP
                     </View>
                     <Divider />
                 </View>
+                </ScrollView>
             </View>
         );
     }
