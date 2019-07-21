@@ -14,8 +14,8 @@ import AsyncStorageKeys from '../constants/AsyncStorageKeys';
 import RiskAssessment from '../interfaces/RiskAssessment'
 import { string } from 'prop-types';
 
-var validate = require("validate.js");
-//import validation from 'validation.js'
+// //var validate = require("validate.js");
+// import validation from 'validation.js'
 
 
 const validation = {
