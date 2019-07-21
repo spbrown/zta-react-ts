@@ -343,9 +343,8 @@ export default class RiskAssessmentAddScreen extends React.Component<HomeScreenP
         return (
             <View style={styles.container}>
                 <Text style={styles.header}>Before you start work, please answer these</Text>
-                {/* <ScrollView> */}
+                <ScrollView>
                 <View style={styles.rows}>
-
                     <Text style={styles.textLabel2}>{this.state.Question1.Question}</Text>
                     <View style={styles.row2}>
                         <RadioGroup
@@ -392,7 +391,7 @@ export default class RiskAssessmentAddScreen extends React.Component<HomeScreenP
                     </View>
                     <Divider />
                 </View>
-                {/* </ScrollView> */}
+                </ScrollView>
             </View>
         );
     }
@@ -474,7 +473,7 @@ const styles = StyleSheet.create({
     },
     rows: {
         flex: 1,
-        height: 100,
+        // height: 100,
     },
     row: {
         flexDirection: "row",

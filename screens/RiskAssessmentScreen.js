@@ -110,33 +110,37 @@ function GetBeforeWorkText(option) {
 const styles = StyleSheet.create({
 
     beforeWorkHeader: {
-        //height: 20,
+        paddingRight: 10,
         width: '75%',
     },
     beforeWorkNotApplicable: {
         backgroundColor: 'orange',
         color: 'white',
+        textAlign: 'center',
+        textAlignVertical: 'center',
         width: '25%',
     },
     beforeWorkYes: {
         backgroundColor: 'green',
         color: 'white',
+        textAlign: 'center',
+        textAlignVertical: 'center',
         width: '25%',
     },
     beforeWorkNo: {
         backgroundColor: 'red',
         color: 'white',
+        textAlign: 'center',
+        textAlignVertical: 'center',
         width: '25%',
     },
     beforeWorkWrapper: {
+        borderBottomColor: '#ddd',
+        borderBottomWidth: 1,
         flexDirection: 'row',
         height: 45,
-        //padding: 10,
         margin: 10,
         paddingBottom: 10,
-        borderBottomWidth: 1,
-        borderBottomColor: '#ddd',
-        // backgroundColor:'#eee'
     },
 
     container: {
