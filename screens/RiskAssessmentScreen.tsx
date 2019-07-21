@@ -3,8 +3,18 @@ import { Button, Header, ListItem, withTheme } from 'react-native-elements';
 import { FlatList, TouchableOpacity, SectionList, ScrollView, StyleSheet, Text, View, Image } from 'react-native';
 //import console = require('console');
 import Moment from 'moment';
+import { NavigationScreenProp } from 'react-navigation';
+import RiskAssessment from '../interfaces/RiskAssessment';
 
-export default class RiskAssessmentScreen extends React.Component {
+interface RiskAssessmentScreenProps {
+    navigation: NavigationScreenProp<any, any>
+};
+
+interface State {
+    riskAssessment: RiskAssessment
+};
+
+export default class RiskAssessmentScreen extends React.Component<RiskAssessmentScreenProps, State>  {
     static navigationOptions = {
         title: 'Risk Assessment'
     };
