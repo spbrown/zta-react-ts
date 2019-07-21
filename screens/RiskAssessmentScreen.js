@@ -114,24 +114,27 @@ const styles = StyleSheet.create({
         width: '75%',
     },
     beforeWorkNotApplicable: {
+        alignItems: 'center', // iOS only
         backgroundColor: 'orange',
         color: 'white',
         textAlign: 'center',
-        textAlignVertical: 'center',
+        textAlignVertical: 'center', // Android only
         width: '25%',
     },
     beforeWorkYes: {
+        alignItems: 'center', // iOS only
         backgroundColor: 'green',
         color: 'white',
         textAlign: 'center',
-        textAlignVertical: 'center',
+        textAlignVertical: 'center', // Android only
         width: '25%',
     },
     beforeWorkNo: {
+        alignItems: 'center', // iOS only
         backgroundColor: 'red',
         color: 'white',
         textAlign: 'center',
-        textAlignVertical: 'center',
+        textAlignVertical: 'center', // Android only
         width: '25%',
     },
     beforeWorkWrapper: {
