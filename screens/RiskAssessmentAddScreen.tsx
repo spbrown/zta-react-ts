@@ -14,6 +14,18 @@ import AsyncStorageKeys from '../constants/AsyncStorageKeys';
 import RiskAssessment from '../interfaces/RiskAssessment'
 import { string } from 'prop-types';
 
+var validate = require("validate.js");
+//import validation from 'validation.js'
+
+
+const validation = {
+    location: {
+        presence: {
+            message: '^Please enter a location'
+        },
+    },
+}
+
 const projects = [
     {
         label: 'Please select...',
@@ -216,7 +228,11 @@ export default class RiskAssessmentAddScreen extends React.Component<HomeScreenP
 
     saveSettings = (settings) => {
 
-        console.log(this.state.Options);
+        //console.log(this.state.Options);
+
+        // const locationError = validate('location', this.state.location);
+        // console.log('locationError:' + locationError);
+        // alert(locationError);
 
         var riskAssessments = Array<RiskAssessment>();
 
@@ -314,23 +330,20 @@ export default class RiskAssessmentAddScreen extends React.Component<HomeScreenP
         // console.log('onPress()')
         // console.log(index)
         // console.log(data)
-        let selectedButton = data.filter(function(el) {return el.selected == true});
+        let selectedButton = data.filter(function (el) { return el.selected == true });
         // console.log(index, selectedButton[0].value);
 
         let value = selectedButton[0].value;
 
         console.log(index, value);
 
-        if (value == 'na')
-        {
+        if (value == 'na') {
             this.state.Options[index] = null;
         }
-        if (value == 'yes')
-        {
+        if (value == 'yes') {
             this.state.Options[index] = true;
         }
-        else
-        {
+        else {
             this.state.Options[index] = false;
         }
 
@@ -344,53 +357,53 @@ export default class RiskAssessmentAddScreen extends React.Component<HomeScreenP
             <View style={styles.container}>
                 <Text style={styles.header}>Before you start work, please answer these</Text>
                 <ScrollView>
-                <View style={styles.rows}>
-                    <Text style={styles.textLabel2}>{this.state.Question1.Question}</Text>
-                    <View style={styles.row2}>
-                        <RadioGroup
-                            radioButtons={this.state.Question1.Options}
-                            onPress={ () => { this.onPress(0,this.state.Question1.Options) }}
-                            flexDirection='row'
-                        />
+                    <View style={styles.rows}>
+                        <Text style={styles.textLabel2}>{this.state.Question1.Question}</Text>
+                        <View style={styles.row2}>
+                            <RadioGroup
+                                radioButtons={this.state.Question1.Options}
+                                onPress={() => { this.onPress(0, this.state.Question1.Options) }}
+                                flexDirection='row'
+                            />
+                        </View>
+                        <Divider />
+                        <Text style={styles.textLabel2}>{this.state.Question2.Question}</Text>
+                        <View style={styles.row2}>
+                            <RadioGroup
+                                radioButtons={this.state.Question2.Options}
+                                onPress={() => { this.onPress(1, this.state.Question2.Options) }}
+                                flexDirection='row'
+                            />
+                        </View>
+                        <Divider />
+                        <Text style={styles.textLabel2}>{this.state.Question3.Question}</Text>
+                        <View style={styles.row2}>
+                            <RadioGroup
+                                radioButtons={this.state.Question3.Options}
+                                onPress={() => { this.onPress(2, this.state.Question3.Options) }}
+                                flexDirection='row'
+                            />
+                        </View>
+                        <Divider />
+                        <Text style={styles.textLabel2}>{this.state.Question4.Question}</Text>
+                        <View style={styles.row2}>
+                            <RadioGroup
+                                radioButtons={this.state.Question4.Options}
+                                onPress={() => { this.onPress(3, this.state.Question4.Options) }}
+                                flexDirection='row'
+                            />
+                        </View>
+                        <Divider />
+                        <Text style={styles.textLabel2}>{this.state.Question5.Question}</Text>
+                        <View style={styles.row2}>
+                            <RadioGroup
+                                radioButtons={this.state.Question5.Options}
+                                onPress={() => { this.onPress(4, this.state.Question5.Options) }}
+                                flexDirection='row'
+                            />
+                        </View>
+                        <Divider />
                     </View>
-                    <Divider />
-                    <Text style={styles.textLabel2}>{this.state.Question2.Question}</Text>
-                    <View style={styles.row2}>
-                        <RadioGroup
-                            radioButtons={this.state.Question2.Options}
-                            onPress={ () => { this.onPress(1,this.state.Question2.Options) }}
-                            flexDirection='row'
-                        />
-                    </View>
-                    <Divider />
-                    <Text style={styles.textLabel2}>{this.state.Question3.Question}</Text>
-                    <View style={styles.row2}>
-                        <RadioGroup
-                            radioButtons={this.state.Question3.Options}
-                            onPress={ () => { this.onPress(2,this.state.Question3.Options) }}
-                            flexDirection='row'
-                        />
-                    </View>
-                    <Divider />
-                    <Text style={styles.textLabel2}>{this.state.Question4.Question}</Text>
-                    <View style={styles.row2}>
-                        <RadioGroup
-                            radioButtons={this.state.Question4.Options}
-                            onPress={ () => { this.onPress(3,this.state.Question4.Options) }}
-                            flexDirection='row'
-                        />
-                    </View>
-                    <Divider />
-                    <Text style={styles.textLabel2}>{this.state.Question5.Question}</Text>
-                    <View style={styles.row2}>
-                        <RadioGroup
-                            radioButtons={this.state.Question5.Options}
-                            onPress={ () => { this.onPress(4,this.state.Question5.Options) }}
-                            flexDirection='row'
-                        />
-                    </View>
-                    <Divider />
-                </View>
                 </ScrollView>
             </View>
         );
