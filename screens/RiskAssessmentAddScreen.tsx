@@ -1,7 +1,7 @@
 import React from 'react';
 
 import { AsyncStorage, Dimensions, ScrollView, StyleSheet, Text, TextInput, View } from 'react-native';
-import { Button, CheckBox, Divider } from 'react-native-elements'
+import { Button, CheckBox, Divider, ThemeProvider } from 'react-native-elements'
 import RNPickerSelect from 'react-native-picker-select';
 import { TabBar, TabView, SceneMap } from 'react-native-tab-view';
 import { NavigationScreenProp } from 'react-navigation';
@@ -126,6 +126,7 @@ interface State {
     Question3: BeforeWorkQuestion,
     Question4: BeforeWorkQuestion,
     Question5: BeforeWorkQuestion,
+    Options: Array<any>,
 }
 
 export default class RiskAssessmentAddScreen extends React.Component<HomeScreenProps, State> {
@@ -194,7 +195,8 @@ export default class RiskAssessmentAddScreen extends React.Component<HomeScreenP
                     { label: 'Yes', value: 'yes', selected: false },
                     { label: 'No', value: 'no', selected: false },
                     { label: 'N/A', value: 'na', selected: true },]
-            }
+            },
+            Options: [null, null, null, null, null],
         };
     }
 
@@ -214,6 +216,8 @@ export default class RiskAssessmentAddScreen extends React.Component<HomeScreenP
 
     saveSettings = (settings) => {
 
+        console.log(this.state.Options);
+
         var riskAssessments = Array<RiskAssessment>();
 
         AsyncStorage.getItem(AsyncStorageKeys.riskAssessments, (error, result) => {
@@ -230,11 +234,7 @@ export default class RiskAssessmentAddScreen extends React.Component<HomeScreenP
                     ref: this.state.ref,
                     submitted: new Date(),
                     task: this.state.task,
-                    question1: false,
-                    question2: true,
-                    question3: null,
-                    question4: true,
-                    question5: false,
+                    questions: this.state.Options,
                 });
                 AsyncStorage.setItem(AsyncStorageKeys.riskAssessments, JSON.stringify(riskAssessments));
             }
@@ -247,11 +247,7 @@ export default class RiskAssessmentAddScreen extends React.Component<HomeScreenP
                     ref: this.state.ref + ', AR20 Verifications Program - Verifications',
                     submitted: new Date(),
                     task: this.state.task,
-                    question1: false,
-                    question2: true,
-                    question3: null,
-                    question4: true,
-                    question5: false,
+                    questions: this.state.Options,
                 })
                 AsyncStorage.setItem(AsyncStorageKeys.riskAssessments, JSON.stringify(riskAssessments));
             }
@@ -314,25 +310,47 @@ export default class RiskAssessmentAddScreen extends React.Component<HomeScreenP
         );
     }
 
-    onPress = (data) => {
-        console.log('onPress()')
-        console.log(data.e)
-        let selectedButton = data.find(e => e.selected == true);
-        console.log(selectedButton);
+    onPress = (index, data) => {
+        // console.log('onPress()')
+        // console.log(index)
+        // console.log(data)
+        let selectedButton = data.filter(function(el) {return el.selected == true});
+        // console.log(index, selectedButton[0].value);
+
+        let value = selectedButton[0].value;
+
+        console.log(index, value);
+
+        if (value == 'na')
+        {
+            this.state.Options[index] = null;
+        }
+        if (value == 'yes')
+        {
+            this.state.Options[index] = true;
+        }
+        else
+        {
+            this.state.Options[index] = false;
+        }
+
     }
 
     renderTabBeforeWork = () => {
+
+        console.log(this.state);
+
         return (
             <View style={styles.container}>
                 <Text style={styles.header}>Before you start work, please answer these</Text>
-                <ScrollView>
+                {/* <ScrollView> */}
                 <View style={styles.rows}>
 
                     <Text style={styles.textLabel2}>{this.state.Question1.Question}</Text>
                     <View style={styles.row2}>
                         <RadioGroup
                             radioButtons={this.state.Question1.Options}
-                            onPress={this.onPress}
+                            onPress={ () => { this.onPress(0,this.state.Question1.Options) }}
                             flexDirection='row'
                         />
                     </View>
@@ -341,7 +359,7 @@ export default class RiskAssessmentAddScreen extends React.Component<HomeScreenP
                     <View style={styles.row2}>
                         <RadioGroup
                             radioButtons={this.state.Question2.Options}
-                            onPress={this.onPress}
+                            onPress={ () => { this.onPress(1,this.state.Question2.Options) }}
                             flexDirection='row'
                         />
                     </View>
@@ -350,7 +368,7 @@ export default class RiskAssessmentAddScreen extends React.Component<HomeScreenP
                     <View style={styles.row2}>
                         <RadioGroup
                             radioButtons={this.state.Question3.Options}
-                            onPress={this.onPress}
+                            onPress={ () => { this.onPress(2,this.state.Question3.Options) }}
                             flexDirection='row'
                         />
                     </View>
@@ -359,7 +377,7 @@ export default class RiskAssessmentAddScreen extends React.Component<HomeScreenP
                     <View style={styles.row2}>
                         <RadioGroup
                             radioButtons={this.state.Question4.Options}
-                            onPress={this.onPress}
+                            onPress={ () => { this.onPress(3,this.state.Question4.Options) }}
                             flexDirection='row'
                         />
                     </View>
@@ -368,13 +386,13 @@ export default class RiskAssessmentAddScreen extends React.Component<HomeScreenP
                     <View style={styles.row2}>
                         <RadioGroup
                             radioButtons={this.state.Question5.Options}
-                            onPress={this.onPress}
+                            onPress={ () => { this.onPress(4,this.state.Question5.Options) }}
                             flexDirection='row'
                         />
                     </View>
                     <Divider />
                 </View>
-                </ScrollView>
+                {/* </ScrollView> */}
             </View>
         );
     }

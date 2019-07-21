@@ -51,26 +51,26 @@ export default class RiskAssessmentScreen extends React.Component {
                     <View style={styles.beforeWorkWrapper}>
                         <Text style={styles.beforeWorkHeader}>Are you aware of the site safety rules and fire procedures?</Text>
                         {/* <Text style={styles.detailItem}>{this.state.riskAssessment.question1 == null ? 'N/A' : this.state.riskAssessment.question1 ? 'Yes' : 'No'}</Text> */}
-                        <Text style={GetBeforeWorkStyle(this.state.riskAssessment.question1)}>{GetBeforeWorkText(this.state.riskAssessment.question1)}</Text>
+                        <Text style={GetBeforeWorkStyle(this.state.riskAssessment.questions[0])}>{GetBeforeWorkText(this.state.riskAssessment.questions[0])}</Text>
                     </View>
                     <View style={styles.beforeWorkWrapper}>
                         <Text style={styles.beforeWorkHeader}>Do you have the correct tools, equipment and PPE for the job?</Text>
                         {/* <Text style={styles.detailItem}>{this.state.riskAssessment.question2 == null ? 'N/A' : this.state.riskAssessment.question2 ? 'Yes' : 'No'}</Text> */}
-                        <Text style={GetBeforeWorkStyle(this.state.riskAssessment.question2)}>{GetBeforeWorkText(this.state.riskAssessment.question2)}</Text>
+                        <Text style={GetBeforeWorkStyle(this.state.riskAssessment.questions[1])}>{GetBeforeWorkText(this.state.riskAssessment.questions[2])}</Text>
                     </View>
                     <View style={styles.beforeWorkWrapper}>
                         <Text style={styles.beforeWorkHeader}>Are the method statement and permit details given correct?</Text>
                         {/* <Text style={styles.detailItem}>{this.state.riskAssessment.question3 == null ? 'N/A' : this.state.riskAssessment.question3 ? 'Yes' : 'No'}</Text> */}
-                        <Text style={GetBeforeWorkStyle(this.state.riskAssessment.question3)}>{GetBeforeWorkText(this.state.riskAssessment.question3)}</Text>
+                        <Text style={GetBeforeWorkStyle(this.state.riskAssessment.questions[2])}>{GetBeforeWorkText(this.state.riskAssessment.questions[2])}</Text>
                     </View>
                     <View style={styles.beforeWorkWrapper}>
                         <Text style={styles.beforeWorkHeader}>Are power tools and leads PAT tested?</Text>
                         {/* <Text style={styles.detailItem}>{this.state.riskAssessment.question4 == null ? 'N/A' : this.state.riskAssessment.question4 ? 'Yes' : 'No'}</Text> */}
-                        <Text style={GetBeforeWorkStyle(this.state.riskAssessment.question4)}>{GetBeforeWorkText(this.state.riskAssessment.question4)}</Text>
+                        <Text style={GetBeforeWorkStyle(this.state.riskAssessment.questions[3])}>{GetBeforeWorkText(this.state.riskAssessment.questions[3])}</Text>
                     </View>
                     <View style={styles.beforeWorkWrapper}>
                         <Text style={styles.beforeWorkHeader}>Is lifting gear and test equipment inspected/within calibration?</Text>
-                        <Text style={GetBeforeWorkStyle(this.state.riskAssessment.question5)}>{GetBeforeWorkText(this.state.riskAssessment.question5)}</Text>
+                        <Text style={GetBeforeWorkStyle(this.state.riskAssessment.questions[4])}>{GetBeforeWorkText(this.state.riskAssessment.questions[4])}</Text>
                     </View>
                 </ScrollView>
             </View>
