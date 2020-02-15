@@ -29,7 +29,7 @@
     "react-navigation": "^3.11.1",
     "validate.js": "^0.13.1",
     "ws": "^7.1.0",
-    "yarn": "^1.17.3"
+    "yarn": "^1.22.0"
   },
   "devDependencies": {
     "@types/react": "^16.8.23",
